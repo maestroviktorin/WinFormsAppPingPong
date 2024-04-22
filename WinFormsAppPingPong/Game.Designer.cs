@@ -138,6 +138,7 @@
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightBlue;
             Controls.Add(alienFront);
             Controls.Add(cyborgFront);
             Controls.Add(alienBottom);

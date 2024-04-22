@@ -10,12 +10,8 @@ namespace WinFormsAppPingPong
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-            player.SoundLocation = "sound.wav";
-            player.Play();
             ApplicationConfiguration.Initialize();
-            Application.Run(new Game());
-            
+            Application.Run(new Menu());
         }
     }
 }

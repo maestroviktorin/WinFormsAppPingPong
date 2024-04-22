@@ -160,8 +160,12 @@ namespace WinFormsAppPingPong
 
         private void CheckCollisions()
         {
-            if (ball.Bounds.IntersectsWith(cyborgFront.Bounds)
-                && (ball.Bounds.IntersectsWith(cyborgTop.Bounds) || ball.Bounds.IntersectsWith(cyborgBottom.Bounds)))
+            if (
+                   Rectangle.Intersect(ball.Bounds, cyborgFront.Bounds) != Rectangle.Empty
+                &&
+                   ((Rectangle.Intersect(ball.Bounds, cyborgFront.Bounds) == Rectangle.Intersect(ball.Bounds, cyborgTop.Bounds))
+                || (Rectangle.Intersect(ball.Bounds, cyborgFront.Bounds) == Rectangle.Intersect(ball.Bounds, cyborgBottom.Bounds)))
+               )
             {
                 ballSpeedX = -ballSpeedX;
                 ballSpeedY = -ballSpeedY;
