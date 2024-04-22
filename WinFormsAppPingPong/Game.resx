@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema 
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="alien.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAABgmlDQ1BJQ0MgcHJvZmlsZQAAKM+VkTlI
+        A0EYhb8coohHYQQRiy3UShsVsQxRFEFBYgSvwt2NiUJ2E3YTbCwF24CFR+NV2Fhra2ErCIIHiLWFlaKN
+        yPrPRkgQIjgwzMebeY+ZNxA8yJiWG46CZeed+FhMm52b12qfCdNKHU1ouunmJqdHE1QdH7cE1HrTq7L4
+        32hMLrsmBDThqJlz8sJLwoNr+ZziHeGIuaInhU+Fexy5oPC90o0SvyhO+xxUmREnER8Wjghr6Qo2Kthc
+        cSzhAeHOpGVLfnC2xEnF64qtTMH8uad6YcOyPTOtdJkdjDHOJFNoGBRYJUOeXlltUVzish+r4m/3/VPi
+        MsS1iimOEbJY6L4f9Qe/u3VT/X2lpIYY1Dx53lsX1G7BV9HzPg897+sIQo9wYZf92QMYehe9WNY696F5
+        A84uy5qxDeeb0PaQ0x3dl0Iyg6kUvJ7IN81ByzXUL5R6+9nn+A4S0tXEFezuQXdashervLuusrc/z/j9
+        EfsGgylyre63JOsAAAAJcEhZcwAACwwAAAsMAT9AIsgAAAAHdElNRQfoBBUIDw7Kt1JSAAADAklEQVRY
+        R+3YSahPURzA8WeeM0aUMsVSpogiVhZKisJGKZGhDLETIhYsLGTBjiQkGbJCQhLKnClCGSLzPPt+63/q
+        dP/n/e9/eGLxfvXpds8953fvu+fcc87/1TXGfxJN0QGd0R5N8E+iBebjDj7jCiah3gfyqbfiHnajOxoq
+        RuApfkcuoR2KoiV24BdC5YvohVqiI6bgAH4gfpgvsMuKohPeIq7s69yAcWiLSqM1dsKb3sAnxPntAXuj
+        KFIP41/yAm/wAFPRFcOwEqfwEl8LR88t93o32OV2zWS0wXa8hnmfYzEc1EVhN+1C3E1XMaFgG97jDN4h
+        fugsr5+Fb2Qewg19u+MxDaPRCvWGr2wL7mMPwngxyUZk+zyP9Tehmi5ORh8cxE+kbpjHdofQHzWF4+MY
+        Ujep1HGYr6pwkrLLqn0jWY5FB7R5K465+I5U4mqZbw4qir64i1TC4BHWYAD8bD16bnmqfmBe85cdi/AN
+        qWS6jiHIzhGeW+4El2on8y5EWeHCdQ6pRPoA54gQri1OmL6dEGPwEan2cg4qa8UehFJjxVm2Cwzfwnk4
+        GS6woBB+NaeRai/fzkDkxgqkEgROhs1gbEYoX4uwAnvdenG7rGXIjaNINQ72I3yeqxFfWwXDpcV68bWs
+        w8iNm0g1DuyWHjA87oWLqce4/AJS7QMHeW5kN0BZrtDTUSpmwnqp9oH3yY3bSDWOmWgGwtgJ4bkP8gyp
+        drFbyA13ZKnGWX5xds1Y9C4c96HcWdsxlRuzkWrc0GYhN9zwuGtLJWgor1ByYxWH+97URuoyRmIdTsKt
+        qFtVu8aj55Z7fRSuIZvDvOtRdvSDAyybyL3wcjgDu6t3cRyM4YWj55Z73cnT+tkcTh0VLZSGf9lDxHvi
+        wPXpCJZgIlyLPHpueWpdMo/5fLNVxVCcQDZxNdzpma+maI6leIJS24oU6z+GP0myc1JN0RNOdO72XVfs
+        eyc/V2wHsEfPLXcDbj3r2+6vhRsoP0v/i+BP1zBgPXpuudeTP84ao/Koq/sD8yD4icb50m0AAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="alien.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="alien.Location" type="System.Drawing.Point, System.Drawing">
+    <value>755, 172</value>
+  </data>
+  <data name="alien.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 110</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="alien.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;alien.Name" xml:space="preserve">
+    <value>alien</value>
+  </data>
+  <data name="&gt;&gt;alien.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;alien.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;alien.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="cyborg.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAABgmlDQ1BJQ0MgcHJvZmlsZQAAKM+VkTlI
+        A0EYhb8coohHYQQRiy3UShsVsQxRFEFBYgSvwt2NiUJ2E3YTbCwF24CFR+NV2Fhra2ErCIIHiLWFlaKN
+        yPrPRkgQIjgwzMebeY+ZNxA8yJiWG46CZeed+FhMm52b12qfCdNKHU1ouunmJqdHE1QdH7cE1HrTq7L4
+        32hMLrsmBDThqJlz8sJLwoNr+ZziHeGIuaInhU+Fexy5oPC90o0SvyhO+xxUmREnER8Wjghr6Qo2Kthc
+        cSzhAeHOpGVLfnC2xEnF64qtTMH8uad6YcOyPTOtdJkdjDHOJFNoGBRYJUOeXlltUVzish+r4m/3/VPi
+        MsS1iimOEbJY6L4f9Qe/u3VT/X2lpIYY1Dx53lsX1G7BV9HzPg897+sIQo9wYZf92QMYehe9WNY696F5
+        A84uy5qxDeeb0PaQ0x3dl0Iyg6kUvJ7IN81ByzXUL5R6+9nn+A4S0tXEFezuQXdashervLuusrc/z/j9
+        EfsGgylyre63JOsAAAAJcEhZcwAACwwAAAsMAT9AIsgAAAAHdElNRQfoBBUIEhovAeozAAAB2klEQVRY
+        R+3XSysFYRzH8eNaLhsWct1KSrHBXrJSbEixY8dG4U2wc3sRbkk2LtlgIa/AGyAslFvu399i6unpmXPm
+        Zk50fvVZzDP/5z//UzNjZAr57ynBAC7wjEsMQuuppxNX+DboWOupZwIfMIfRsdZTzzAeYQ6j4yGkngac
+        wxzmFPXIS+pgDqPjvMYcJu9JdZhiNKEXfei3mMPY51SvfY1Qn1gpxQzOcA/7Uc5F9dqn/dOI/ELUIOtw
+        XSSqNYQeqAhjeICraVTqNwr1D5wy7MDVMK4tqH/gVOAGrmZxXUP9A6cK7zCb6GbUr1rCIT5hnvdo/QCL
+        UL1906uv+geOis0Gsoxq6AaswT7sGtG6zqtO9dpn18Qexv40mIVdI1o3o312TexhJuFFT8Mq7BpZgfm0
+        TMGuiT3MK8aht+kC3mDXiNZ1XnWq1z67JvYwSQo0zAh2cQRXk6Sov66j6/nmFq7Nv+UOvtmD372QNF1H
+        1/NNLVrRBVcDzzG60ebQgxO49nnUX9fR9XIm1w3cjGxpgWufJ9GnaQ6VcEXr83Dt84QaRg1d7weP/t48
+        Qf+a2LSe7SPsBX4/xJly6Ob6gqthVOq3jVCfEHqdd2AT+iWuxmGpzwbaUchfTSbzA2r6vyov1MwIAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
+  <data name="cyborg.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="cyborg.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 172</value>
+  </data>
+  <data name="cyborg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 110</value>
+  </data>
+  <data name="cyborg.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;cyborg.Name" xml:space="preserve">
+    <value>cyborg</value>
+  </data>
+  <data name="&gt;&gt;cyborg.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cyborg.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cyborg.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <metadata name="Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="ball.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        TkSuQmCC
+</value>
+  </data>
+  <data name="ball.Location" type="System.Drawing.Point, System.Drawing">
+    <value>389, 210</value>
+  </data>
+  <data name="ball.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
+  </data>
+  <data name="ball.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;ball.Name" xml:space="preserve">
+    <value>ball</value>
+  </data>
+  <data name="&gt;&gt;ball.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ball.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ball.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="cyborgTop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 172</value>
+  </data>
+  <data name="cyborgTop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 3</value>
+  </data>
+  <data name="cyborgTop.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;cyborgTop.Name" xml:space="preserve">
+    <value>cyborgTop</value>
+  </data>
+  <data name="&gt;&gt;cyborgTop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cyborgTop.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cyborgTop.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="cyborgBottom.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cyborgBottom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 279</value>
+  </data>
+  <data name="cyborgBottom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 3</value>
+  </data>
+  <data name="cyborgBottom.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;cyborgBottom.Name" xml:space="preserve">
+    <value>cyborgBottom</value>
+  </data>
+  <data name="&gt;&gt;cyborgBottom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cyborgBottom.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cyborgBottom.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="cyborgTopCorner.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cyborgTopCorner.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 172</value>
+  </data>
+  <data name="cyborgTopCorner.Size" type="System.Drawing.Size, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="cyborgTopCorner.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;cyborgTopCorner.Name" xml:space="preserve">
+    <value>cyborgTopCorner</value>
+  </data>
+  <data name="&gt;&gt;cyborgTopCorner.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cyborgTopCorner.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cyborgTopCorner.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="cyborgBottomCorner.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cyborgBottomCorner.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 279</value>
+  </data>
+  <data name="cyborgBottomCorner.Size" type="System.Drawing.Size, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="cyborgBottomCorner.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;cyborgBottomCorner.Name" xml:space="preserve">
+    <value>cyborgBottomCorner</value>
+  </data>
+  <data name="&gt;&gt;cyborgBottomCorner.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cyborgBottomCorner.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cyborgBottomCorner.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="alienBottomCorner.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="alienBottomCorner.Location" type="System.Drawing.Point, System.Drawing">
+    <value>755, 278</value>
+  </data>
+  <data name="alienBottomCorner.Size" type="System.Drawing.Size, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="alienBottomCorner.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;alienBottomCorner.Name" xml:space="preserve">
+    <value>alienBottomCorner</value>
+  </data>
+  <data name="&gt;&gt;alienBottomCorner.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;alienBottomCorner.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;alienBottomCorner.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="alienTopCorner.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="alienTopCorner.Location" type="System.Drawing.Point, System.Drawing">
+    <value>755, 172</value>
+  </data>
+  <data name="alienTopCorner.Size" type="System.Drawing.Size, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="alienTopCorner.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;alienTopCorner.Name" xml:space="preserve">
+    <value>alienTopCorner</value>
+  </data>
+  <data name="&gt;&gt;alienTopCorner.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;alienTopCorner.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;alienTopCorner.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="alienBottom.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="alienBottom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>758, 279</value>
+  </data>
+  <data name="alienBottom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 3</value>
+  </data>
+  <data name="alienBottom.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;alienBottom.Name" xml:space="preserve">
+    <value>alienBottom</value>
+  </data>
+  <data name="&gt;&gt;alienBottom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;alienBottom.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;alienBottom.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="alienTop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="alienTop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>758, 172</value>
+  </data>
+  <data name="alienTop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 3</value>
+  </data>
+  <data name="alienTop.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;alienTop.Name" xml:space="preserve">
+    <value>alienTop</value>
+  </data>
+  <data name="&gt;&gt;alienTop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;alienTop.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;alienTop.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="cyborgFront.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cyborgFront.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 175</value>
+  </data>
+  <data name="cyborgFront.Size" type="System.Drawing.Size, System.Drawing">
+    <value>3, 104</value>
+  </data>
+  <data name="cyborgFront.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;cyborgFront.Name" xml:space="preserve">
+    <value>cyborgFront</value>
+  </data>
+  <data name="&gt;&gt;cyborgFront.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cyborgFront.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cyborgFront.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="alienFront.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="alienFront.Location" type="System.Drawing.Point, System.Drawing">
+    <value>755, 175</value>
+  </data>
+  <data name="alienFront.Size" type="System.Drawing.Size, System.Drawing">
+    <value>3, 104</value>
+  </data>
+  <data name="alienFront.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;alienFront.Name" xml:space="preserve">
+    <value>alienFront</value>
+  </data>
+  <data name="&gt;&gt;alienFront.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;alienFront.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;alienFront.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cyborgCounterLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cyborgCounterLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Cascadia Code, 16.128pt</value>
+  </data>
+  <data name="cyborgCounterLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 9</value>
+  </data>
+  <data name="cyborgCounterLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 37</value>
+  </data>
+  <data name="cyborgCounterLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="cyborgCounterLabel.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cyborgCounterLabel.Name" xml:space="preserve">
+    <value>cyborgCounterLabel</value>
+  </data>
+  <data name="&gt;&gt;cyborgCounterLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cyborgCounterLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cyborgCounterLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="alienCounterLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="alienCounterLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Cascadia Code, 16.128pt</value>
+  </data>
+  <data name="alienCounterLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="alienCounterLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>725, 9</value>
+  </data>
+  <data name="alienCounterLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 37</value>
+  </data>
+  <data name="alienCounterLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="alienCounterLabel.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;alienCounterLabel.Name" xml:space="preserve">
+    <value>alienCounterLabel</value>
+  </data>
+  <data name="&gt;&gt;alienCounterLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;alienCounterLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;alienCounterLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>9, 21</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>802, 452</value>
+  </data>
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>820, 500</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>820, 500</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Ping-Pong</value>
+  </data>
+  <data name="&gt;&gt;Timer.Name" xml:space="preserve">
+    <value>Timer</value>
+  </data>
+  <data name="&gt;&gt;Timer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>
