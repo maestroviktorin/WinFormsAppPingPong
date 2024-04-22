@@ -36,10 +36,6 @@
             ball = new PictureBox();
             cyborgTop = new PictureBox();
             cyborgBottom = new PictureBox();
-            cyborgTopCorner = new PictureBox();
-            cyborgBottomCorner = new PictureBox();
-            alienBottomCorner = new PictureBox();
-            alienTopCorner = new PictureBox();
             alienBottom = new PictureBox();
             alienTop = new PictureBox();
             cyborgFront = new PictureBox();
@@ -51,10 +47,6 @@
             ((System.ComponentModel.ISupportInitialize)ball).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cyborgTop).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cyborgBottom).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cyborgTopCorner).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cyborgBottomCorner).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)alienBottomCorner).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)alienTopCorner).BeginInit();
             ((System.ComponentModel.ISupportInitialize)alienBottom).BeginInit();
             ((System.ComponentModel.ISupportInitialize)alienTop).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cyborgFront).BeginInit();
@@ -104,34 +96,6 @@
             cyborgBottom.Name = "cyborgBottom";
             cyborgBottom.TabStop = false;
             // 
-            // cyborgTopCorner
-            // 
-            cyborgTopCorner.BackColor = Color.Indigo;
-            resources.ApplyResources(cyborgTopCorner, "cyborgTopCorner");
-            cyborgTopCorner.Name = "cyborgTopCorner";
-            cyborgTopCorner.TabStop = false;
-            // 
-            // cyborgBottomCorner
-            // 
-            cyborgBottomCorner.BackColor = Color.Indigo;
-            resources.ApplyResources(cyborgBottomCorner, "cyborgBottomCorner");
-            cyborgBottomCorner.Name = "cyborgBottomCorner";
-            cyborgBottomCorner.TabStop = false;
-            // 
-            // alienBottomCorner
-            // 
-            alienBottomCorner.BackColor = Color.LimeGreen;
-            resources.ApplyResources(alienBottomCorner, "alienBottomCorner");
-            alienBottomCorner.Name = "alienBottomCorner";
-            alienBottomCorner.TabStop = false;
-            // 
-            // alienTopCorner
-            // 
-            alienTopCorner.BackColor = Color.LimeGreen;
-            resources.ApplyResources(alienTopCorner, "alienTopCorner");
-            alienTopCorner.Name = "alienTopCorner";
-            alienTopCorner.TabStop = false;
-            // 
             // alienBottom
             // 
             alienBottom.BackColor = Color.LimeGreen;
@@ -174,21 +138,17 @@
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(alienCounterLabel);
-            Controls.Add(cyborgCounterLabel);
             Controls.Add(alienFront);
             Controls.Add(cyborgFront);
-            Controls.Add(alienBottomCorner);
-            Controls.Add(alienTopCorner);
             Controls.Add(alienBottom);
             Controls.Add(alienTop);
-            Controls.Add(cyborgBottomCorner);
-            Controls.Add(cyborgTopCorner);
             Controls.Add(cyborgBottom);
             Controls.Add(cyborgTop);
             Controls.Add(ball);
             Controls.Add(cyborg);
             Controls.Add(alien);
+            Controls.Add(alienCounterLabel);
+            Controls.Add(cyborgCounterLabel);
             DoubleBuffered = true;
             Name = "Game";
             KeyDown += Game_KeyDown;
@@ -198,10 +158,6 @@
             ((System.ComponentModel.ISupportInitialize)ball).EndInit();
             ((System.ComponentModel.ISupportInitialize)cyborgTop).EndInit();
             ((System.ComponentModel.ISupportInitialize)cyborgBottom).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cyborgTopCorner).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cyborgBottomCorner).EndInit();
-            ((System.ComponentModel.ISupportInitialize)alienBottomCorner).EndInit();
-            ((System.ComponentModel.ISupportInitialize)alienTopCorner).EndInit();
             ((System.ComponentModel.ISupportInitialize)alienBottom).EndInit();
             ((System.ComponentModel.ISupportInitialize)alienTop).EndInit();
             ((System.ComponentModel.ISupportInitialize)cyborgFront).EndInit();
@@ -218,10 +174,6 @@
         private PictureBox ball;
         private PictureBox cyborgTop;
         private PictureBox cyborgBottom;
-        private PictureBox cyborgTopCorner;
-        private PictureBox cyborgBottomCorner;
-        private PictureBox alienBottomCorner;
-        private PictureBox alienTopCorner;
         private PictureBox alienBottom;
         private PictureBox alienTop;
         private PictureBox cyborgFront;

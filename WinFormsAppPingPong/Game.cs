@@ -2,9 +2,9 @@ namespace WinFormsAppPingPong
 {
     public partial class Game : Form
     {
-        public int ballSpeedX = 5;
-        public int ballSpeedY = 5;
-        public int playerSpeed = 3;
+        public int ballSpeedX = 3;
+        public int ballSpeedY = 3;
+        public int playerSpeed = 4;
         bool alienUp, alienDown;
         bool cyborgUp, cyborgDown;
         int alienCounter, cyborgCounter;
@@ -146,9 +146,7 @@ namespace WinFormsAppPingPong
         {
             alien.Top += speed;
             alienBottom.Top += speed;
-            alienBottomCorner.Top += speed;
             alienTop.Top += speed;
-            alienTopCorner.Top += speed;
             alienFront.Top += speed;
         }
 
@@ -156,53 +154,73 @@ namespace WinFormsAppPingPong
         {
             cyborg.Top += speed;
             cyborgBottom.Top += speed;
-            cyborgBottomCorner.Top += speed;
             cyborgTop.Top += speed;
-            cyborgTopCorner.Top += speed;
             cyborgFront.Top += speed;
         }
 
         private void CheckCollisions()
         {
+            if (ball.Bounds.IntersectsWith(cyborgFront.Bounds)
+                && (ball.Bounds.IntersectsWith(cyborgTop.Bounds) || ball.Bounds.IntersectsWith(cyborgBottom.Bounds)))
+            {
+                ballSpeedX = -ballSpeedX;
+                ballSpeedY = -ballSpeedY;
+                ball.Left = cyborg.Right + ballSpeedX;
+                ball.Top += ballSpeedY;
+                return;
+            }
             if (ball.Bounds.IntersectsWith(cyborgFront.Bounds))
             {
                 ballSpeedX = -ballSpeedX;
-                //ball.Left -= ballSpeedX;
+                ball.Left = cyborg.Right + ballSpeedX;
                 return;
             }
-            if (ball.Bounds.IntersectsWith(cyborgTop.Bounds) || ball.Bounds.IntersectsWith(cyborgBottom.Bounds))
+            if (ball.Bounds.IntersectsWith(cyborgTop.Bounds))
             {
                 ballSpeedY = -ballSpeedY;
-                //ball.Top -= ballSpeedY;
+                ball.Top = cyborg.Top - ball.Height;
+
+                MoveCyborgBy(Math.Abs(ballSpeedY) * playerSpeed);
                 return;
             }
-            if (ball.Bounds.IntersectsWith(cyborgTopCorner.Bounds) || ball.Bounds.IntersectsWith(cyborgBottomCorner.Bounds))
+            if (ball.Bounds.IntersectsWith(cyborgBottom.Bounds))
             {
-                ballSpeedX = -ballSpeedX;
                 ballSpeedY = -ballSpeedY;
-                //ball.Left -= ballSpeedX + ball.Left;
-                //ball.Top -= ballSpeedY + ball.Bottom;
+                ball.Top = cyborg.Bottom + ball.Height;
+
+                MoveCyborgBy(Math.Abs(ballSpeedY) * (-playerSpeed));
                 return;
             }
 
+            if (ball.Bounds.IntersectsWith(alienFront.Bounds)
+                && (ball.Bounds.IntersectsWith(alienTop.Bounds) || ball.Bounds.IntersectsWith(alienBottom.Bounds)))
+            {
+                ballSpeedX = -ballSpeedX;
+                ballSpeedY = -ballSpeedY;
+                ball.Left = alien.Left + ballSpeedX - ball.Width;
+                ball.Top += ballSpeedY;
+                return;
+            }
             if (ball.Bounds.IntersectsWith(alienFront.Bounds))
             {
                 ballSpeedX = -ballSpeedX;
-                //ball.Left += ballSpeedX;
+                ball.Left = alien.Left + ballSpeedX - ball.Width;
                 return;
             }
-            if (ball.Bounds.IntersectsWith(alienTop.Bounds) || ball.Bounds.IntersectsWith(alienBottom.Bounds))
+            if (ball.Bounds.IntersectsWith(alienTop.Bounds))
             {
                 ballSpeedY = -ballSpeedY;
-                //ball.Top += ballSpeedY;
+                ball.Top = alien.Top - ballSpeedY;
+
+                MoveAlienBy(Math.Abs(ballSpeedY) * (-playerSpeed));
                 return;
             }
-            if (ball.Bounds.IntersectsWith(alienTopCorner.Bounds) || ball.Bounds.IntersectsWith(alienBottomCorner.Bounds))
+            if (ball.Bounds.IntersectsWith(alienBottom.Bounds))
             {
-                ballSpeedX = -ballSpeedX;
                 ballSpeedY = -ballSpeedY;
-                //ball.Left += ballSpeedX - ball.Right;
-                //ball.Top += ballSpeedY - ball.Bottom;
+                ball.Top = alien.Bottom + ballSpeedY;
+
+                MoveAlienBy(Math.Abs(ballSpeedY) * (-playerSpeed));
                 return;
             }
         }
@@ -210,6 +228,7 @@ namespace WinFormsAppPingPong
         private void NewRound()
         {
             ballSpeedX = -ballSpeedX;
+            ballSpeedY = -ballSpeedY;
 
             Random random = new Random();
             ball.Top = random.Next(ClientSize.Height / 3, 2 * ClientSize.Height / 3);
