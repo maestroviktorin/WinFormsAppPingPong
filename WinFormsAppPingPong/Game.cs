@@ -160,12 +160,8 @@ namespace WinFormsAppPingPong
 
         private void CheckCollisions()
         {
-            if (
-                   Rectangle.Intersect(ball.Bounds, cyborgFront.Bounds) != Rectangle.Empty
-                &&
-                   ((Rectangle.Intersect(ball.Bounds, cyborgFront.Bounds) == Rectangle.Intersect(ball.Bounds, cyborgTop.Bounds))
-                || (Rectangle.Intersect(ball.Bounds, cyborgFront.Bounds) == Rectangle.Intersect(ball.Bounds, cyborgBottom.Bounds)))
-               )
+            if (ball.Bounds.IntersectsWith(cyborgFront.Bounds)
+                && (ball.Bounds.IntersectsWith(cyborgTop.Bounds) || ball.Bounds.IntersectsWith(cyborgBottom.Bounds)))
             {
                 ballSpeedX = -ballSpeedX;
                 ballSpeedY = -ballSpeedY;
@@ -173,26 +169,29 @@ namespace WinFormsAppPingPong
                 ball.Top += ballSpeedY;
                 return;
             }
-            if (ball.Bounds.IntersectsWith(cyborgFront.Bounds))
-            {
-                ballSpeedX = -ballSpeedX;
-                ball.Left = cyborg.Right + ballSpeedX;
-                return;
-            }
             if (ball.Bounds.IntersectsWith(cyborgTop.Bounds))
             {
-                ballSpeedY = -ballSpeedY;
+                if (ballSpeedY < 0) ballSpeedY = -ballSpeedY;
                 ball.Top = cyborg.Top - ball.Height;
+                ball.Left += ballSpeedX;
 
                 MoveCyborgBy(Math.Abs(ballSpeedY) * playerSpeed);
                 return;
             }
             if (ball.Bounds.IntersectsWith(cyborgBottom.Bounds))
             {
-                ballSpeedY = -ballSpeedY;
+                if (ballSpeedY > 0) ballSpeedY = -ballSpeedY;
                 ball.Top = cyborg.Bottom + ball.Height;
+                ball.Left += ballSpeedX;
 
                 MoveCyborgBy(Math.Abs(ballSpeedY) * (-playerSpeed));
+                return;
+            }
+            if (ball.Bounds.IntersectsWith(cyborgFront.Bounds))
+            {
+                ballSpeedX = -ballSpeedX;
+                ball.Left = cyborg.Right + ballSpeedX;
+                ball.Top += ballSpeedY;
                 return;
             }
 
@@ -205,38 +204,51 @@ namespace WinFormsAppPingPong
                 ball.Top += ballSpeedY;
                 return;
             }
-            if (ball.Bounds.IntersectsWith(alienFront.Bounds))
-            {
-                ballSpeedX = -ballSpeedX;
-                ball.Left = alien.Left + ballSpeedX - ball.Width;
-                return;
-            }
             if (ball.Bounds.IntersectsWith(alienTop.Bounds))
             {
-                ballSpeedY = -ballSpeedY;
-                ball.Top = alien.Top - ballSpeedY;
+                if (ballSpeedY < 0) ballSpeedY = -ballSpeedY;
+                ball.Top = alien.Top - ballSpeedY - ball.Height;
+                ball.Left += ballSpeedX;
 
-                MoveAlienBy(Math.Abs(ballSpeedY) * (-playerSpeed));
+                MoveAlienBy(Math.Abs(ballSpeedY) * playerSpeed);
                 return;
             }
             if (ball.Bounds.IntersectsWith(alienBottom.Bounds))
             {
-                ballSpeedY = -ballSpeedY;
+                if (ballSpeedY > 0) ballSpeedY = -ballSpeedY;
                 ball.Top = alien.Bottom + ballSpeedY;
+                ball.Left += ballSpeedX;
 
                 MoveAlienBy(Math.Abs(ballSpeedY) * (-playerSpeed));
+                return;
+            }
+            if (ball.Bounds.IntersectsWith(alienFront.Bounds))
+            {
+                ballSpeedX = -ballSpeedX;
+                ball.Left = alien.Left + ballSpeedX - ball.Width;
+                ball.Top += ballSpeedY;
                 return;
             }
         }
 
         private void NewRound()
         {
-            ballSpeedX = -ballSpeedX;
-            ballSpeedY = -ballSpeedY;
-
             Random random = new Random();
-            ball.Top = random.Next(ClientSize.Height / 3, 2 * ClientSize.Height / 3);
-            ball.Left = random.Next(ClientSize.Width / 3, 2 * ClientSize.Width / 3);
+            if (ballSpeedX < 0)
+            {
+                ball.Top = random.Next(ClientSize.Height / 3, ClientSize.Height / 2);
+                ball.Left = random.Next(ClientSize.Width / 3, ClientSize.Width / 2);
+            }
+            else
+            {
+                ball.Top = random.Next(ClientSize.Height / 2, 2 * ClientSize.Height / 3);
+                ball.Left = random.Next(ClientSize.Width / 2, 2 * ClientSize.Width / 3);
+            }
+
+            if (random.Next(0, 2) == 1)
+            {
+                ballSpeedY = -ballSpeedY;
+            }
         }
     }
 }

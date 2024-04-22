@@ -87,39 +87,39 @@
             // button1
             // 
             button1.BackColor = Color.Ivory;
-            button1.Font = new Font("Cascadia Mono SemiBold", 13.8239994F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Font = new Font("Cascadia Mono", 25.92F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.CornflowerBlue;
             button1.Location = new Point(49, 287);
             button1.Name = "button1";
             button1.Size = new Size(149, 96);
             button1.TabIndex = 4;
-            button1.Text = "Easy";
+            button1.Text = "😊";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
             // 
             button2.BackColor = Color.Ivory;
-            button2.Font = new Font("Cascadia Mono SemiBold", 13.8239994F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Font = new Font("Cascadia Mono", 25.92F, FontStyle.Bold);
             button2.ForeColor = Color.Orange;
             button2.Location = new Point(325, 287);
             button2.Name = "button2";
             button2.Size = new Size(149, 96);
             button2.TabIndex = 5;
-            button2.Text = "Medium";
+            button2.Text = "🙃";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button3
             // 
             button3.BackColor = Color.Ivory;
-            button3.Font = new Font("Cascadia Mono SemiBold", 13.8239994F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Font = new Font("Cascadia Mono", 25.92F, FontStyle.Bold);
             button3.ForeColor = Color.Crimson;
             button3.Location = new Point(601, 287);
             button3.Name = "button3";
             button3.Size = new Size(149, 96);
             button3.TabIndex = 6;
-            button3.Text = "HARD";
+            button3.Text = "\U0001f978";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
