@@ -28,7 +28,7 @@ namespace WinFormsAppPingPong
             player.SoundLocation = "easy.wav";
             player.PlayLooping();
 
-            Game game = new Game(2, 2);
+            Game game = new Game(3, 3);
             game.ShowDialog();
 
             player.Stop();
@@ -56,7 +56,7 @@ namespace WinFormsAppPingPong
             player.SoundLocation = "hard.wav";
             player.PlayLooping();
 
-            Game game = new Game(8, 8);
+            Game game = new Game(7, 7);
             game.ShowDialog();
 
             player.Stop();
