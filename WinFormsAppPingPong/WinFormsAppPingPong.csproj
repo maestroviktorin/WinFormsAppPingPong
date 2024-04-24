@@ -9,7 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="GameManager\" />
     <Folder Include="Resources\" />
+    <Folder Include="Temporary\" />
   </ItemGroup>
 
   <ItemGroup>
