@@ -9,7 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="GameManager\" />
+    <Compile Remove="GameManager\**" />
+    <EmbeddedResource Remove="GameManager\**" />
+    <None Remove="GameManager\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Temporary\" />
   </ItemGroup>

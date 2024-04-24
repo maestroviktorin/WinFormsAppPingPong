@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsAppPingPong.Properties;
 
 namespace WinFormsAppPingPong
 {
@@ -16,16 +18,16 @@ namespace WinFormsAppPingPong
         public Menu()
         {
             InitializeComponent();
-            menuPlayer = new System.Media.SoundPlayer();
-            menuPlayer.SoundLocation = "menu.wav";
+            var music = Resources.menu;
+            menuPlayer = new System.Media.SoundPlayer(music);
             menuPlayer.PlayLooping();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             menuPlayer.Stop();
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-            player.SoundLocation = "easy.wav";
+            var music = Resources.easy;
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(music);
             player.PlayLooping();
 
             Game game = new Game(3, 3);
@@ -38,8 +40,8 @@ namespace WinFormsAppPingPong
         private void button2_Click(object sender, EventArgs e)
         {
             menuPlayer.Stop();
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-            player.SoundLocation = "medium.wav";
+            var music = Resources.medium;
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(music);
             player.PlayLooping();
 
             Game game = new Game(5, 5);
@@ -52,8 +54,8 @@ namespace WinFormsAppPingPong
         private void button3_Click(object sender, EventArgs e)
         {
             menuPlayer.Stop();
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-            player.SoundLocation = "hard.wav";
+            var music = Resources.hard;
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(music);
             player.PlayLooping();
 
             Game game = new Game(7, 7);
