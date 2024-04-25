@@ -15,12 +15,35 @@ namespace WinFormsAppPingPong
     public partial class MenuForm : Form
     {
         System.Media.SoundPlayer menuPlayer;
+
+        int magicNum1 = 32;
+        int magicNum2 = 32;
+
         public MenuForm()
         {
             InitializeComponent();
             var music = Resources.menu;
             menuPlayer = new System.Media.SoundPlayer(music);
             menuPlayer.PlayLooping();
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == 0x84)
+            {
+                Point pos = new Point(m.LParam.ToInt32());
+                pos = this.PointToClient(pos);
+                if (pos.Y < magicNum1)
+                {
+                    m.Result = (IntPtr)2;
+                    return;
+                }
+                if (pos.X >= this.ClientSize.Width - magicNum2 && pos.Y >= this.ClientSize.Height - magicNum2)
+                {
+                    m.Result = (IntPtr)17; return;
+                }
+            }
+            base.WndProc(ref m);
         }
 
         private void button1_Click(object sender, EventArgs e)
