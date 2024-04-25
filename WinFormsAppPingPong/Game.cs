@@ -13,6 +13,7 @@ namespace WinFormsAppPingPong
         public Game()
         {
             InitializeComponent();
+
         }
 
         public Game(int ballSpeedX, int ballSpeedY)
@@ -21,6 +22,8 @@ namespace WinFormsAppPingPong
             this.ballSpeedY = ballSpeedY;
 
             InitializeComponent();
+            this.Size = Screen.PrimaryScreen.Bounds.Size;
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)

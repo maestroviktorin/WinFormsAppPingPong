@@ -12,10 +12,10 @@ using WinFormsAppPingPong.Properties;
 
 namespace WinFormsAppPingPong
 {
-    public partial class Menu : Form
+    public partial class MenuForm : Form
     {
         System.Media.SoundPlayer menuPlayer;
-        public Menu()
+        public MenuForm()
         {
             InitializeComponent();
             var music = Resources.menu;

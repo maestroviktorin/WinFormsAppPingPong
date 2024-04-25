@@ -152,6 +152,7 @@
             Controls.Add(cyborgCounterLabel);
             DoubleBuffered = true;
             Name = "Game";
+            WindowState = FormWindowState.Maximized;
             KeyDown += Game_KeyDown;
             KeyUp += Game_KeyUp;
             ((System.ComponentModel.ISupportInitialize)alien).EndInit();
