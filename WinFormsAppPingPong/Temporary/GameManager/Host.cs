@@ -10,13 +10,18 @@ namespace PingPong.GameManager
 {
     public class Host: Client
     {
-        public string IP { get; }
+        public IPAddress IP { get; }
+
+        public int Port { get; } = 8000;
         
         public Host()
         {
-            IP = LocalIPAddress().ToString();
-            var server = new HttpListener();
-            server.Start();
+            IP = LocalIPAddress();
+            var server = new UdpClient(Port);
+
+            var endPoint = new IPEndPoint(IP, Port);
+
+            server.Receive(ref endPoint);
         }
 
         private IPAddress? LocalIPAddress()

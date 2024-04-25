@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Temporary\" />
   </ItemGroup>
 
   <ItemGroup>
