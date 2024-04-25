@@ -1,3 +1,6 @@
+using WinFormsAppPingPong.Temporary.GameManager;
+using WinFormsAppPingPong.Temporary.GameManager.Database;
+
 namespace WinFormsAppPingPong
 {
     public partial class Game : Form
@@ -28,6 +31,12 @@ namespace WinFormsAppPingPong
 
         private void Timer_Tick(object sender, EventArgs e)
         {
+            foreach (var obj in UpdateObject.objects)
+            {
+                obj.Update();
+            }
+
+
             if (ballMove)
             {
                 ball.Top -= ballSpeedY;
@@ -97,7 +106,7 @@ namespace WinFormsAppPingPong
         {
             if (e.KeyCode == Keys.Down)
             {
-                alienDown = true;
+                PingPongData.Instance.HostInput = 1;
             }
             if (e.KeyCode == Keys.Up)
             {

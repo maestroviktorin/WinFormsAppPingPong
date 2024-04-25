@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WinFormsAppPingPong.Temporary.GameManager;
+using WinFormsAppPingPong.Temporary.GameManager.Database;
 
 namespace PingPong.GameManager
 {
@@ -12,16 +13,8 @@ namespace PingPong.GameManager
     {
         public Initializer()
         {
+            new PingPongData();
             new ClientMoveHandler();
-        }
-
-        Type[] GetUpdates()
-        {
-            var type = typeof(IUpdate);
-            var types = AppDomain.CurrentDomain
-                .GetAssemblies()
-                .Select(a => a.GetTypes()
-                            .Where(p => type.IsAssignableFrom(p)));
         }
 
     }

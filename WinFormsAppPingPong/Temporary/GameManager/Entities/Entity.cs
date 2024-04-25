@@ -4,10 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WinFormsAppPingPong.Temporary.GameManager;
 
 namespace PingPong.GameManager
 {
-    public abstract class Entity
+    public abstract class Entity: UpdateObject
     {
         public Point position;
 

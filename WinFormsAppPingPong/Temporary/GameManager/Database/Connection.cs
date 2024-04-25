@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppPingPong.Temporary.GameManager.Database
 {
-    internal class JsonConnector
+    internal class Connection: UpdateObject
     {
-        public JsonConnector()
+        public Connection()
         {
 
+        }
+
+        public override void Update()
+        {
+            base.Update();
         }
     }
 }

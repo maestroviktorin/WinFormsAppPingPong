@@ -21,5 +21,10 @@ namespace PingPong.GameManager
         {
             throw new NotImplementedException();
         }
+
+        public override void Update()
+        {
+            
+        }
     }
 }

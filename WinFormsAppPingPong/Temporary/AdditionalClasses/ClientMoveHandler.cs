@@ -15,7 +15,9 @@ namespace PingPong.AdditionalClasses
 
         public ClientMoveHandler()
         {
-            if (Instance == null) { Instance = this; }
+            if (Instance != null) throw new Exception("More than one instance");
+
+            Instance = this;
         }
 
         public void Handle(char key)
