@@ -106,7 +106,7 @@ namespace WinFormsAppPingPong
         {
             if (e.KeyCode == Keys.Down)
             {
-                PingPongData.Instance.HostInput = 1;
+                alienDown = true;
             }
             if (e.KeyCode == Keys.Up)
             {

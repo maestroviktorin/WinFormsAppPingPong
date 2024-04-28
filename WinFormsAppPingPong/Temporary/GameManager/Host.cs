@@ -4,56 +4,98 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using WinFormsAppPingPong.Temporary.GameManager;
 using WinFormsAppPingPong.Temporary.GameManager.Database;
+using WinFormsAppPingPong.Temporary.GameManager.Events;
 
 namespace PingPong.GameManager
 {
-    public class Host: Client
+    public class Host
     {
-        public IPAddress IP { get; }
-        UdpClient server;
-        IPEndPoint endPoint;
+        public const int PORT = 8079;
+        private Socket socket;
+        private EndPoint ownEndPoint;
+        private EndPoint connectedEndPoint;
+        PingPongDataDto data2Send;
 
-        bool isConnected = false;
 
-        public int Port { get; }
-        
-        public Host(int port)
+        private byte[] buffer;
+        private ArraySegment<byte> bufferSegment;
+
+        public static Host Create()
         {
-            this.Port = port;
-            IP = LocalIPAddress();
-
-            if (IP == null) throw new Exception("You're not connected to the internet");
-
-            server = new UdpClient(Port);
-
-            endPoint = new IPEndPoint(IP, Port);
-
-            
-
+            return new Host().Setup();
         }
 
-        public override void Update()
+        public Host Setup()
         {
-            byte[] data = server.Receive(ref endPoint);
-            if (!isConnected && data != null)
+            buffer = new byte[4096];
+            bufferSegment = new ArraySegment<byte>(buffer);
+            data2Send = new PingPongDataDto();
+
+            ownEndPoint = new IPEndPoint(IPAddress.Any, PORT);
+
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.PacketInformation, true);
+            socket.Bind(ownEndPoint);
+
+            return this;
+        }
+
+        async public Task<bool> WaitForOtherConnection()
+        {
+            try
             {
-                isConnected = true;
-                PingPongData.Instance.ClientName = data.ToString();
+                var info = await socket.ReceiveMessageFromAsync(bufferSegment, connectedEndPoint);
+                connectedEndPoint = info.RemoteEndPoint;
+                return true;
             }
-            // TODO check client for some sort of identification
-            if (isConnected)
+            catch (Exception ex)
             {
-                object transferredDTO = data;
-                // assign data to PingPongData
-
-                byte[] data2Send = new byte[5];
-
+                return false;
             }
         }
 
-        private IPAddress? LocalIPAddress()
+        async public Task SendDataToConnectedClient()
+        {
+            data2Send.ClientPos = PingPongData.Instance.ClientPosition;
+            data2Send.HostPos = PingPongData.Instance.HostPosition;
+            data2Send.BallPos = PingPongData.Instance.BallPosition;
+            byte[] data = JsonSerializer.SerializeToUtf8Bytes(data2Send);
+            await socket.SendToAsync(data, connectedEndPoint);
+        }
+
+        public void StartReceivingFromClient()
+        {
+            PingPongData data = PingPongData.Instance;
+            SendDataDto dto;
+            SocketReceiveMessageFromResult res;
+            Task.Run(async () =>
+            {
+                while (true)
+                {
+                    try
+                    {
+                        res = await socket.ReceiveMessageFromAsync(bufferSegment, connectedEndPoint);
+                        if (res.RemoteEndPoint != connectedEndPoint)
+                        {
+                            continue;
+                        }
+                        dto = JsonSerializer.Deserialize<SendDataDto>(bufferSegment);
+                        data.ClientInput = dto.Input;
+                    }
+                    catch (Exception ex)
+                    {
+                        // todo
+                    }
+
+                }
+            });
+        }
+
+        public static IPAddress LocalIPAddress()
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {

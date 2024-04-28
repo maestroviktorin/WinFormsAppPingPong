@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace WinFormsAppPingPong.Temporary.GameManager.Database
 {
-    public class SendDataDto
+    public class PingPongDataDto
     {
-        public int Input {  get; set; }
+        public Point HostPos {  get; set; }
+        public Point ClientPos { get; set;}
+        public Point BallPos { get; set;}
+
     }
 }
