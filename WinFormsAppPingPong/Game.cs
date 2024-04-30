@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic.Logging;
 using WinFormsAppPingPong.Temporary.GameManager;
 using WinFormsAppPingPong.Temporary.GameManager.Database;
 
@@ -58,43 +59,10 @@ namespace WinFormsAppPingPong
                 ++alienCounter;
                 NewRound();
             }
-
-            if (alienDown)
-            {
-                MoveAlienBy(playerSpeed);
-            }
-
-            if (alienUp)
-            {
-                MoveAlienBy(-playerSpeed);
-            }
-
-            if (cyborgDown)
-            {
-                MoveCyborgBy(playerSpeed);
-            }
-            if (cyborgUp)
-            {
-                MoveCyborgBy(-playerSpeed);
-            }
-
-            if (alien.Top < 0)
-            {
-                MoveAlienBy(playerSpeed);
-            }
-            if (cyborg.Top < 0)
-            {
-                MoveCyborgBy(playerSpeed);
-            }
-
-            if (alien.Bottom > ClientSize.Height)
-            {
-                MoveAlienBy(-playerSpeed);
-            }
-            if (cyborg.Bottom > ClientSize.Height)
-            {
-                MoveCyborgBy(-playerSpeed);
-            }
+            
+            // !!! WARNING !!!
+            MoveAlienBy(PingPongData.Instance.ClientInput * playerSpeed);
+            MoveAlienBy(PingPongData.Instance.HostInput * playerSpeed);
 
             alienCounterLabel.Text = alienCounter.ToString();
             cyborgCounterLabel.Text = cyborgCounter.ToString();
@@ -102,15 +70,16 @@ namespace WinFormsAppPingPong
             CheckCollisions();
         }
 
+        // !!! WARNING !!!
         private void Game_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down)
             {
-                alienDown = true;
+                PingPongData.Instance.HostInput = 1;
             }
             if (e.KeyCode == Keys.Up)
             {
-                alienUp = true;
+                PingPongData.Instance.HostInput = -1;
             }
 
             if (e.KeyCode == Keys.W)
@@ -128,15 +97,12 @@ namespace WinFormsAppPingPong
             }
         }
 
+        // !!! WARNING !!!
         private void Game_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down)
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
             {
-                alienDown = false;
-            }
-            if (e.KeyCode == Keys.Up)
-            {
-                alienUp = false;
+                PingPongData.Instance.HostInput = 0;
             }
 
             if (e.KeyCode == Keys.W)
@@ -156,6 +122,7 @@ namespace WinFormsAppPingPong
 
         private void MoveAlienBy(int speed)
         {
+            if (alien.Top + speed < 0 || alien.Bottom + speed > ClientSize.Height) return;
             alien.Top += speed;
             alienBottom.Top += speed;
             alienTop.Top += speed;
@@ -164,6 +131,7 @@ namespace WinFormsAppPingPong
 
         private void MoveCyborgBy(int speed)
         {
+            if (cyborg.Top + speed < 0 || cyborg.Top + speed > ClientSize.Height) return;
             cyborg.Top += speed;
             cyborgBottom.Top += speed;
             cyborgTop.Top += speed;

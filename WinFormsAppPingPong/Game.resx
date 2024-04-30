@@ -149,10 +149,10 @@
     <value>Center</value>
   </data>
   <data name="alien.Location" type="System.Drawing.Point, System.Drawing">
-    <value>671, 164</value>
+    <value>755, 172</value>
   </data>
   <data name="alien.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 105</value>
+    <value>35, 110</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="alien.TabIndex" type="System.Int32, mscorlib">
@@ -195,10 +195,10 @@
     <value>Center</value>
   </data>
   <data name="cyborg.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 164</value>
+    <value>12, 172</value>
   </data>
   <data name="cyborg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 105</value>
+    <value>35, 110</value>
   </data>
   <data name="cyborg.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -279,10 +279,10 @@
     <value>Stretch</value>
   </data>
   <data name="ball.Location" type="System.Drawing.Point, System.Drawing">
-    <value>346, 200</value>
+    <value>389, 210</value>
   </data>
   <data name="ball.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 14</value>
+    <value>15, 15</value>
   </data>
   <data name="ball.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -303,10 +303,10 @@
     <value>6</value>
   </data>
   <data name="cyborgTop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 164</value>
+    <value>12, 172</value>
   </data>
   <data name="cyborgTop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 1</value>
+    <value>35, 1</value>
   </data>
   <data name="cyborgTop.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -327,10 +327,10 @@
     <value>NoControl</value>
   </data>
   <data name="cyborgBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 268</value>
+    <value>12, 281</value>
   </data>
   <data name="cyborgBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 1</value>
+    <value>35, 1</value>
   </data>
   <data name="cyborgBottom.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -351,10 +351,10 @@
     <value>NoControl</value>
   </data>
   <data name="alienBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>671, 268</value>
+    <value>755, 281</value>
   </data>
   <data name="alienBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 1</value>
+    <value>35, 1</value>
   </data>
   <data name="alienBottom.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -375,10 +375,10 @@
     <value>NoControl</value>
   </data>
   <data name="alienTop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>671, 164</value>
+    <value>755, 172</value>
   </data>
   <data name="alienTop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 1</value>
+    <value>35, 1</value>
   </data>
   <data name="alienTop.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -399,10 +399,10 @@
     <value>NoControl</value>
   </data>
   <data name="cyborgFront.Location" type="System.Drawing.Point, System.Drawing">
-    <value>41, 164</value>
+    <value>46, 172</value>
   </data>
   <data name="cyborgFront.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1, 105</value>
+    <value>1, 110</value>
   </data>
   <data name="cyborgFront.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -423,10 +423,10 @@
     <value>NoControl</value>
   </data>
   <data name="alienFront.Location" type="System.Drawing.Point, System.Drawing">
-    <value>671, 164</value>
+    <value>755, 172</value>
   </data>
   <data name="alienFront.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1, 105</value>
+    <value>1, 110</value>
   </data>
   <data name="alienFront.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -450,10 +450,10 @@
     <value>Cascadia Code, 16.128pt</value>
   </data>
   <data name="cyborgCounterLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>42, 9</value>
+    <value>47, 9</value>
   </data>
   <data name="cyborgCounterLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 35</value>
+    <value>33, 37</value>
   </data>
   <data name="cyborgCounterLabel.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -483,10 +483,10 @@
     <value>NoControl</value>
   </data>
   <data name="alienCounterLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 9</value>
+    <value>722, 9</value>
   </data>
   <data name="alienCounterLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 35</value>
+    <value>33, 37</value>
   </data>
   <data name="alienCounterLabel.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -510,19 +510,19 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 20</value>
+    <value>9, 21</value>
   </data>
   <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>713, 431</value>
+    <value>802, 451</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>731, 478</value>
+    <value>820, 499</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>731, 478</value>
+    <value>820, 499</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Ping-Pong</value>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppPingPong.Temporary.GameManager.Database
 {
-    public class SendDataDto
+    public class SendInputDto
     {
         public int Input {  get; set; }
     }

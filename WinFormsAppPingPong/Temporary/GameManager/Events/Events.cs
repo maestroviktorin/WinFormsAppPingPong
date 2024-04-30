@@ -11,8 +11,7 @@ namespace WinFormsAppPingPong.Temporary.GameManager.Events
     {
         public static Action<PlayerJoinEvent> OnPlayerJoin = (PlayerJoinEvent p) => { };
 
-        public static Action OnBallTouchPlayer = () => { };
-        
+        public static Action OnBallTouchPlayer = () => { };        
     }
 
     public class PlayerJoinEvent

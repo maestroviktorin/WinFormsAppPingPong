@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsAppPingPong.Temporary.GameManager.Database;
 
 namespace PingPong.AdditionalClasses
 {
-    internal class ClientMoveHandler
+    internal class MoveHandler
     {
-        public static ClientMoveHandler? Instance { get; private set; }
+        public static MoveHandler Instance { get; private set; }
 
-        public int Y = 0;
-
-        public ClientMoveHandler()
+        public MoveHandler()
         {
             if (Instance != null) throw new Exception("More than one instance");
 
@@ -24,15 +23,15 @@ namespace PingPong.AdditionalClasses
         {
             if (key == (char)Keys.W)
             {
-                Y = 1;
+                PingPongData.Instance.HostInput = 1;
             }
             else if (key == (char)Keys.S)
             {
-                Y = -1;
+                PingPongData.Instance.HostInput = -1;
             }
             else
             {
-                Y = 0;
+                PingPongData.Instance.HostInput = 0;
             }
         }
     }

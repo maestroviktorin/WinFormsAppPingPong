@@ -8,7 +8,7 @@ namespace WinFormsAppPingPong.Temporary.GameManager.Database
 {
     internal class PingPongData
     {
-        public static PingPongData? Instance = null;
+        public static PingPongData Instance = null;
         public PingPongData()
         {
             if (Instance != null) throw new Exception("More than one instance");
@@ -26,7 +26,7 @@ namespace WinFormsAppPingPong.Temporary.GameManager.Database
         public Point BallMovementVector { get; set; }
 
         public int HostInput {  get; set; }
-        public int ClientInput { get; set;}
+        public int ClientInput { get; set; }
 
         public int HostScore { get; set; }
         public int ClientScore { get; set; }

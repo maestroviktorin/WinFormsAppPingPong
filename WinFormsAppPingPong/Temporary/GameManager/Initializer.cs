@@ -14,7 +14,7 @@ namespace PingPong.GameManager
         public Initializer()
         {
             new PingPongData();
-            new ClientMoveHandler();
+            new MoveHandler();
         }
 
     }

@@ -6,17 +6,19 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using WinFormsAppPingPong.Temporary.AdditionalClasses;
 using WinFormsAppPingPong.Temporary.GameManager;
 using WinFormsAppPingPong.Temporary.GameManager.Database;
 
 namespace PingPong.GameManager
 {
-    public class Client
+    public class Client: IPlayer
     {
         public const int PORT = 8079;
         private Socket socket;
         private EndPoint ownEndPoint;
         private EndPoint serverEndPoint;
+        private SendInputDto sendInputDto;
 
         private byte[] buffer;
         private ArraySegment<byte> bufferSegment;
@@ -33,6 +35,7 @@ namespace PingPong.GameManager
 
             ownEndPoint = new IPEndPoint(IPAddress.Any, PORT);
             serverEndPoint = new IPEndPoint(address, port);
+            sendInputDto = new SendInputDto();
 
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.PacketInformation, true);
@@ -41,12 +44,12 @@ namespace PingPong.GameManager
             return this;
         }
 
-        public void StartReceiving()
+        public void StartReceivingLoop()
         {
             _ = Task.Run(async () =>
             {
                 SocketReceiveMessageFromResult res;
-                PingPongDataDto data;
+                SendGameDataDto data;
                 PingPongData mainData = PingPongData.Instance;
 
                 while (true)
@@ -54,10 +57,10 @@ namespace PingPong.GameManager
                     res = await socket.ReceiveMessageFromAsync(bufferSegment, SocketFlags.None, serverEndPoint);
                     try
                     {
-                        data = JsonSerializer.Deserialize<PingPongDataDto>(bufferSegment);
-                        mainData.BallPosition = data.BallPos;
-                        mainData.HostPosition = data.HostPos;
-                        mainData.ClientPosition = data.ClientPos;
+                        data = JsonSerializer.Deserialize<SendGameDataDto>(bufferSegment);
+                        mainData.BallPosition = data.BallPosition;
+                        mainData.HostPosition = data.HostPosition;
+                        mainData.ClientPosition = data.ClientPosition;
                     }
                     catch (Exception ex)
                     {
@@ -67,11 +70,12 @@ namespace PingPong.GameManager
             });
         }
 
-        async public Task Send(SendDataDto obj)
+        async public Task Send()
         {
+            sendInputDto.Input = PingPongData.Instance.HostInput;
             try
             {
-                byte[] data = JsonSerializer.SerializeToUtf8Bytes(obj);
+                byte[] data = JsonSerializer.SerializeToUtf8Bytes(sendInputDto);
 
                 await socket.SendToAsync(data, serverEndPoint);
             }
