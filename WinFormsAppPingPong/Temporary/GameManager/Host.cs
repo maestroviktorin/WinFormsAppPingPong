@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using WinFormsAppPingPong;
 using WinFormsAppPingPong.Temporary.AdditionalClasses;
 using WinFormsAppPingPong.Temporary.GameManager;
 using WinFormsAppPingPong.Temporary.GameManager.Database;
@@ -20,21 +21,21 @@ namespace PingPong.GameManager
         private EndPoint ownEndPoint;
         private EndPoint connectedEndPoint;
         SendGameDataDto data2Send;
+        PingPongData gameData;
+        Game gameForm;
 
 
         private byte[] buffer;
         private ArraySegment<byte> bufferSegment;
 
-        public static Host Create()
+        public Host Setup(Game game)
         {
-            return new Host().Setup();
-        }
+            gameForm = game;
 
-        public Host Setup()
-        {
             buffer = new byte[4096];
             bufferSegment = new ArraySegment<byte>(buffer);
             data2Send = new SendGameDataDto();
+            gameData = PingPongData.Instance;
 
             ownEndPoint = new IPEndPoint(IPAddress.Any, PORT);
 
@@ -72,22 +73,44 @@ namespace PingPong.GameManager
         // TODO: Refactor. Add a "Wait-for-Connection" loop and a `OnPlayerJoin` event.
         public void StartReceivingLoop()
         {
+            IPEndPoint ep = new IPEndPoint(IPAddress.Any, PORT);
             PingPongData data = PingPongData.Instance;
             SendInputDto dto;
             SocketReceiveMessageFromResult res;
             Task.Run(async () =>
             {
+                // waiting for first message that must be a name of user
+                // TODO
                 while (true)
                 {
                     try
                     {
-                        res = await socket.ReceiveMessageFromAsync(bufferSegment, connectedEndPoint);
+                        res = await socket.ReceiveMessageFromAsync(bufferSegment, ep);
+
+                        connectedEndPoint = ep;
+                        string name = JsonSerializer.Deserialize<string>(bufferSegment);
+                        //await socket.SendToAsync()
+
+                        break;
+                    }
+                    catch
+                    {
+                        // do smt
+                    }
+                }
+
+                while (true)
+                {
+                    try
+                    {
+                        res = await socket.ReceiveMessageFromAsync(bufferSegment, ep);
                         if (res.RemoteEndPoint != connectedEndPoint)
                         {
                             continue;
                         }
                         dto = JsonSerializer.Deserialize<SendInputDto>(bufferSegment);
-                        data.ClientInput = dto.Input;
+                        data.ClientInputUp = dto.InputUp;
+                        data.ClientInputDown = dto.InputDown;
                     }
                     catch (Exception ex)
                     {
@@ -112,6 +135,24 @@ namespace PingPong.GameManager
                 .FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
         }
 
-
+        public void Run()
+        {
+            if (gameData.ClientInputUp)
+            {
+                gameForm.MoveAlienBy(gameForm.playerSpeed);
+            }
+            if (gameData.ClientInputDown)
+            {
+                gameForm.MoveAlienBy(-gameForm.playerSpeed);
+            }
+            if (gameData.HostInputUp)
+            {
+                gameForm.MoveCyborgBy(gameForm.playerSpeed);
+            }
+            if (gameData.HostInputDown)
+            {
+                gameForm.MoveCyborgBy(-gameForm.playerSpeed);
+            }
+        }
     }
 }

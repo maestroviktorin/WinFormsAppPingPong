@@ -10,5 +10,7 @@ namespace WinFormsAppPingPong.Temporary.AdditionalClasses
     {
         public Task Send();
         public void StartReceivingLoop();
+
+        public void Run();
     }
 }

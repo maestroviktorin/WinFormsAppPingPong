@@ -9,6 +9,7 @@ namespace WinFormsAppPingPong.Temporary.GameManager.Database
 {
     public class SendInputDto
     {
-        public int Input {  get; set; }
+        public bool InputUp {  get; set; }
+        public bool InputDown {  get; set; }
     }
 }

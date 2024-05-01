@@ -72,7 +72,8 @@ namespace PingPong.GameManager
 
         async public Task Send()
         {
-            sendInputDto.Input = PingPongData.Instance.HostInput;
+            sendInputDto.InputUp = PingPongData.Instance.HostInputUp;
+            sendInputDto.InputDown = PingPongData.Instance.HostInputDown;
             try
             {
                 byte[] data = JsonSerializer.SerializeToUtf8Bytes(sendInputDto);
@@ -98,6 +99,11 @@ namespace PingPong.GameManager
             return host
                 .AddressList
                 .FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
+        }
+
+        public void Run()
+        {
+            // Do nothing
         }
     }
 }

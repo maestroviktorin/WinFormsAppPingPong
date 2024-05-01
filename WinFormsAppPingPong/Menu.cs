@@ -53,7 +53,7 @@ namespace WinFormsAppPingPong
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(music);
             player.PlayLooping();
 
-            Game game = new Game(3, 3);
+            Game game = new Game(3, 3, false);
             game.ShowDialog();
 
             player.Stop();
@@ -67,7 +67,7 @@ namespace WinFormsAppPingPong
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(music);
             player.PlayLooping();
 
-            Game game = new Game(5, 5);
+            Game game = new Game(5, 5, false);
             game.ShowDialog();
 
             player.Stop();
@@ -81,11 +81,14 @@ namespace WinFormsAppPingPong
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(music);
             player.PlayLooping();
 
-            Game game = new Game(7, 7);
+            Game game = new Game(7, 7, false);
             game.ShowDialog();
 
             player.Stop();
             menuPlayer.PlayLooping();
         }
+
+        // TODO
+        // add a create game as host and create game as Client with giving it ipaddress of the host
     }
 }

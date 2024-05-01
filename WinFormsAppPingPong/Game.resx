@@ -149,10 +149,14 @@
     <value>Center</value>
   </data>
   <data name="alien.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 172</value>
+    <value>587, 123</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="alien.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="alien.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 110</value>
+    <value>28, 79</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="alien.TabIndex" type="System.Int32, mscorlib">
@@ -168,7 +172,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;alien.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="cyborg.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -195,10 +199,13 @@
     <value>Center</value>
   </data>
   <data name="cyborg.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 172</value>
+    <value>9, 123</value>
+  </data>
+  <data name="cyborg.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="cyborg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 110</value>
+    <value>28, 79</value>
   </data>
   <data name="cyborg.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -213,7 +220,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cyborg.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <metadata name="Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -278,11 +285,17 @@
   <data name="ball.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
+  <data name="ball.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="ball.Location" type="System.Drawing.Point, System.Drawing">
-    <value>389, 210</value>
+    <value>303, 150</value>
+  </data>
+  <data name="ball.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="ball.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 15</value>
+    <value>12, 11</value>
   </data>
   <data name="ball.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
@@ -300,13 +313,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ball.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="cyborgTop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 172</value>
+    <value>9, 123</value>
+  </data>
+  <data name="cyborgTop.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="cyborgTop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 1</value>
+    <value>27, 1</value>
   </data>
   <data name="cyborgTop.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -321,16 +337,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cyborgTop.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="cyborgBottom.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cyborgBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 281</value>
+    <value>9, 201</value>
+  </data>
+  <data name="cyborgBottom.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="cyborgBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 1</value>
+    <value>27, 1</value>
   </data>
   <data name="cyborgBottom.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -345,16 +364,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cyborgBottom.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="alienBottom.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="alienBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 281</value>
+    <value>587, 201</value>
+  </data>
+  <data name="alienBottom.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="alienBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 1</value>
+    <value>27, 1</value>
   </data>
   <data name="alienBottom.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -369,16 +391,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;alienBottom.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="alienTop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="alienTop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 172</value>
+    <value>587, 123</value>
+  </data>
+  <data name="alienTop.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="alienTop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 1</value>
+    <value>27, 1</value>
   </data>
   <data name="alienTop.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -393,16 +418,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;alienTop.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="cyborgFront.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cyborgFront.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 172</value>
+    <value>36, 123</value>
+  </data>
+  <data name="cyborgFront.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="cyborgFront.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1, 110</value>
+    <value>1, 79</value>
   </data>
   <data name="cyborgFront.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -417,16 +445,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cyborgFront.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="alienFront.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="alienFront.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 172</value>
+    <value>587, 123</value>
+  </data>
+  <data name="alienFront.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="alienFront.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1, 110</value>
+    <value>1, 79</value>
   </data>
   <data name="alienFront.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -441,7 +472,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;alienFront.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="cyborgCounterLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -450,10 +481,13 @@
     <value>Cascadia Code, 16.128pt</value>
   </data>
   <data name="cyborgCounterLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>47, 9</value>
+    <value>37, 6</value>
+  </data>
+  <data name="cyborgCounterLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
   <data name="cyborgCounterLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 37</value>
+    <value>26, 29</value>
   </data>
   <data name="cyborgCounterLabel.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -471,7 +505,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cyborgCounterLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="alienCounterLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -483,10 +517,13 @@
     <value>NoControl</value>
   </data>
   <data name="alienCounterLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>722, 9</value>
+    <value>562, 6</value>
+  </data>
+  <data name="alienCounterLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
   <data name="alienCounterLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 37</value>
+    <value>26, 29</value>
   </data>
   <data name="alienCounterLabel.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -504,25 +541,85 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;alienCounterLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
+  </data>
+  <data name="upButtonLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="upButtonLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>153, 6</value>
+  </data>
+  <data name="upButtonLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 15</value>
+  </data>
+  <data name="upButtonLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="upButtonLabel.Text" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;upButtonLabel.Name" xml:space="preserve">
+    <value>upButtonLabel</value>
+  </data>
+  <data name="&gt;&gt;upButtonLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upButtonLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;upButtonLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="downButtonLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="downButtonLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="downButtonLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>197, 6</value>
+  </data>
+  <data name="downButtonLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 15</value>
+  </data>
+  <data name="downButtonLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="downButtonLabel.Text" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;downButtonLabel.Name" xml:space="preserve">
+    <value>downButtonLabel</value>
+  </data>
+  <data name="&gt;&gt;downButtonLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;downButtonLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;downButtonLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>9, 21</value>
+    <value>7, 15</value>
   </data>
   <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>802, 451</value>
+    <value>625, 329</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>820, 499</value>
+    <value>641, 368</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>820, 499</value>
+    <value>641, 368</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Ping-Pong</value>

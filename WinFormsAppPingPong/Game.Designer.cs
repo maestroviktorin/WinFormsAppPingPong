@@ -42,6 +42,8 @@
             alienFront = new PictureBox();
             cyborgCounterLabel = new Label();
             alienCounterLabel = new Label();
+            upButtonLabel = new Label();
+            downButtonLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)alien).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cyborg).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ball).BeginInit();
@@ -134,11 +136,23 @@
             resources.ApplyResources(alienCounterLabel, "alienCounterLabel");
             alienCounterLabel.Name = "alienCounterLabel";
             // 
+            // upButtonLabel
+            // 
+            resources.ApplyResources(upButtonLabel, "upButtonLabel");
+            upButtonLabel.Name = "upButtonLabel";
+            // 
+            // downButtonLabel
+            // 
+            resources.ApplyResources(downButtonLabel, "downButtonLabel");
+            downButtonLabel.Name = "downButtonLabel";
+            // 
             // Game
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Beige;
+            Controls.Add(downButtonLabel);
+            Controls.Add(upButtonLabel);
             Controls.Add(alienFront);
             Controls.Add(cyborgFront);
             Controls.Add(alienBottom);
@@ -182,5 +196,7 @@
         private PictureBox alienFront;
         private Label cyborgCounterLabel;
         private Label alienCounterLabel;
+        private Label upButtonLabel;
+        private Label downButtonLabel;
     }
 }
