@@ -16,8 +16,8 @@ namespace PingPong.GameManager
     {
         public const int PORT = 8079;
         private Socket socket;
-        private EndPoint ownEndPoint;
-        private EndPoint serverEndPoint;
+        public EndPoint ownEndPoint { get; private set; }
+        public EndPoint connectedEndPoint { get; private set; }
         private SendInputDto sendInputDto;
 
         private byte[] buffer;
@@ -28,13 +28,12 @@ namespace PingPong.GameManager
             return new Client().Setup(address, port);
         }
 
-        public Client Setup(IPAddress address, int port)
+        public Client Setup()
         {
             buffer = new byte[4096];
             bufferSegment = new ArraySegment<byte>(buffer);
 
             ownEndPoint = new IPEndPoint(IPAddress.Any, PORT);
-            serverEndPoint = new IPEndPoint(address, port);
             sendInputDto = new SendInputDto();
 
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
@@ -42,6 +41,27 @@ namespace PingPong.GameManager
             socket.Bind(ownEndPoint);
 
             return this;
+        }
+
+        async public Task<bool> ConnectToHost(IPAddress address, int port)
+        {
+            try
+            {
+                connectedEndPoint = new IPEndPoint(address, port);
+                socket.SendTo(Encoding.UTF8.GetBytes("Name1"), connectedEndPoint);
+                byte[] nameBuffer = new byte[1024];
+                var res = await socket.ReceiveMessageFromAsync(nameBuffer, connectedEndPoint);
+                PingPongData.Instance.HostName = Encoding.UTF8.GetString(nameBuffer, 0, res.ReceivedBytes);
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                // TODO
+                // check if connection wrong and restart
+                MessageBox.Show("Error on connection");
+                return false;
+            }
         }
 
         public void StartReceivingLoop()
@@ -54,7 +74,7 @@ namespace PingPong.GameManager
 
                 while (true)
                 {
-                    res = await socket.ReceiveMessageFromAsync(bufferSegment, SocketFlags.None, serverEndPoint);
+                    res = await socket.ReceiveMessageFromAsync(bufferSegment, SocketFlags.None, connectedEndPoint);
                     try
                     {
                         data = JsonSerializer.Deserialize<SendGameDataDto>(bufferSegment);
@@ -78,7 +98,7 @@ namespace PingPong.GameManager
             {
                 byte[] data = JsonSerializer.SerializeToUtf8Bytes(sendInputDto);
 
-                await socket.SendToAsync(data, serverEndPoint);
+                await socket.SendToAsync(data, connectedEndPoint);
             }
             catch (Exception ex)
             {

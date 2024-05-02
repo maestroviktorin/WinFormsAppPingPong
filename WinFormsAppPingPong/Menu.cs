@@ -1,20 +1,25 @@
-﻿using System;
+﻿using PingPong.GameManager;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinFormsAppPingPong.Properties;
+using WinFormsAppPingPong.Temporary.AdditionalClasses;
+using WinFormsAppPingPong.Temporary.GameManager.Events;
 
 namespace WinFormsAppPingPong
 {
     public partial class MenuForm : Form
     {
         System.Media.SoundPlayer menuPlayer;
+        IPlayer player = null;
 
         int magicNum1 = 32;
         int magicNum2 = 32;
@@ -25,6 +30,8 @@ namespace WinFormsAppPingPong
             var music = Resources.menu;
             menuPlayer = new System.Media.SoundPlayer(music);
             menuPlayer.PlayLooping();
+
+            PingPongEvents.OnPlayerJoin = ActivateGame;
         }
 
         protected override void WndProc(ref Message m)
@@ -46,17 +53,26 @@ namespace WinFormsAppPingPong
             base.WndProc(ref m);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void HostButtonClick(object sender, EventArgs e)
         {
             menuPlayer.Stop();
             var music = Resources.easy;
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(music);
-            player.PlayLooping();
+            System.Media.SoundPlayer soundPlayer = new System.Media.SoundPlayer(music);
+            soundPlayer.PlayLooping();
 
-            Game game = new Game(3, 3, false);
+            Host host = new Host();
+            IPAddress ip = host.ownEndPoint.Address;
+            int port = host.ownEndPoint.Port;
+
+            player = host;
+
+            // show in panel ip and host
+            // wait for the other connection
+
+            Game game = new Game(3, 3, null);
             game.ShowDialog();
 
-            player.Stop();
+            soundPlayer.Stop();
             menuPlayer.PlayLooping();
         }
 
@@ -67,7 +83,7 @@ namespace WinFormsAppPingPong
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(music);
             player.PlayLooping();
 
-            Game game = new Game(5, 5, false);
+            Game game = new Game(5, 5, null);
             game.ShowDialog();
 
             player.Stop();
@@ -81,11 +97,33 @@ namespace WinFormsAppPingPong
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(music);
             player.PlayLooping();
 
-            Game game = new Game(7, 7, false);
+            Game game = new Game(7, 7, null);
             game.ShowDialog();
 
             player.Stop();
             menuPlayer.PlayLooping();
+        }
+
+        private void JoinButtonClick(object sender, EventArgs e)
+        {
+            // wait for IP and Port to be written
+            Client client = new Client().Setup();
+            player = client;
+
+            // show fields for ip and port
+        }
+
+        private void IPAndPortSubmit(object sender, EventArgs e)
+        {
+            // ip = textbox.text
+            // port = tbx2.text
+
+            // (player as Client).ConnectToHost(ip, port);
+        }
+
+        private void ActivateGame(PlayerJoinEvent e)
+        {
+            new Game(5, 5, player);
         }
 
         // TODO

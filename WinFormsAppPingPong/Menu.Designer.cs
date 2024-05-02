@@ -38,6 +38,7 @@
             button1 = new Button();
             label5 = new Label();
             label6 = new Label();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // easy
@@ -46,14 +47,14 @@
             easy.BackColor = Color.Ivory;
             easy.Font = new Font("Cascadia Mono", 25.92F, FontStyle.Bold, GraphicsUnit.Point, 0);
             easy.ForeColor = Color.CornflowerBlue;
-            easy.Location = new Point(13, 324);
+            easy.Location = new Point(12, 309);
             easy.Margin = new Padding(4, 3, 4, 3);
             easy.Name = "easy";
-            easy.Size = new Size(103, 85);
+            easy.Size = new Size(92, 81);
             easy.TabIndex = 4;
             easy.Text = "😊";
             easy.UseVisualStyleBackColor = false;
-            easy.Click += button1_Click;
+            easy.Click += HostButtonClick;
             // 
             // medium
             // 
@@ -61,10 +62,10 @@
             medium.BackColor = Color.Ivory;
             medium.Font = new Font("Cascadia Mono", 25.92F, FontStyle.Bold);
             medium.ForeColor = Color.Orange;
-            medium.Location = new Point(124, 324);
+            medium.Location = new Point(110, 309);
             medium.Margin = new Padding(4, 3, 4, 3);
             medium.Name = "medium";
-            medium.Size = new Size(103, 85);
+            medium.Size = new Size(92, 81);
             medium.TabIndex = 5;
             medium.Text = "🙃";
             medium.UseVisualStyleBackColor = false;
@@ -76,10 +77,10 @@
             hard.BackColor = Color.Ivory;
             hard.Font = new Font("Cascadia Mono", 25.92F, FontStyle.Bold);
             hard.ForeColor = Color.Crimson;
-            hard.Location = new Point(235, 324);
+            hard.Location = new Point(209, 309);
             hard.Margin = new Padding(4, 3, 4, 3);
             hard.Name = "hard";
-            hard.Size = new Size(103, 85);
+            hard.Size = new Size(92, 81);
             hard.TabIndex = 6;
             hard.Text = "☠️";
             hard.UseVisualStyleBackColor = false;
@@ -94,7 +95,7 @@
             label1.Location = new Point(0, 0);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(905, 83);
+            label1.Size = new Size(804, 79);
             label1.TabIndex = 7;
             label1.Text = "CYBORGS VS. ALIENS";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -105,10 +106,10 @@
             label2.Dock = DockStyle.Top;
             label2.Font = new Font("Cascadia Mono", 15F, FontStyle.Bold | FontStyle.Italic);
             label2.ForeColor = Color.Ivory;
-            label2.Location = new Point(0, 83);
+            label2.Location = new Point(0, 79);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(905, 35);
+            label2.Size = new Size(804, 33);
             label2.TabIndex = 8;
             label2.Text = "PING-PONG";
             label2.TextAlign = ContentAlignment.TopCenter;
@@ -119,9 +120,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Cascadia Mono SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Ivory;
-            label3.Location = new Point(12, 265);
+            label3.Location = new Point(11, 252);
             label3.Name = "label3";
-            label3.Size = new Size(336, 56);
+            label3.Size = new Size(336, 54);
             label3.TabIndex = 9;
             label3.Text = "      CREATE NEW GAME\r\nAND DEFEND YOUR COMPUTER...";
             // 
@@ -131,21 +132,22 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Cascadia Mono SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Ivory;
-            label4.Location = new Point(518, 293);
+            label4.Location = new Point(460, 279);
             label4.Name = "label4";
-            label4.Size = new Size(360, 28);
+            label4.Size = new Size(360, 27);
             label4.TabIndex = 10;
             label4.Text = "...OR INVADE ANOTHER COMPUTER";
             // 
             // button1
             // 
             button1.Font = new Font("Cascadia Mono", 25.92F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(533, 324);
+            button1.Location = new Point(474, 309);
             button1.Name = "button1";
-            button1.Size = new Size(325, 85);
+            button1.Size = new Size(289, 81);
             button1.TabIndex = 11;
             button1.Text = "JOIN";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += JoinButtonClick;
             // 
             // label5
             // 
@@ -153,9 +155,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Cascadia Mono", 47.808F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Fuchsia;
-            label5.Location = new Point(102, 156);
+            label5.Location = new Point(91, 149);
             label5.Name = "label5";
-            label5.Size = new Size(155, 109);
+            label5.Size = new Size(154, 106);
             label5.TabIndex = 12;
             label5.Text = "🤖";
             // 
@@ -165,20 +167,28 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Cascadia Mono", 47.808F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Chartreuse;
-            label6.Location = new Point(617, 156);
+            label6.Location = new Point(548, 149);
             label6.Name = "label6";
-            label6.Size = new Size(155, 109);
+            label6.Size = new Size(143, 106);
             label6.TabIndex = 13;
             label6.Text = "👽";
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(474, 442);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 14;
+            // 
             // MenuForm
             // 
-            AutoScaleDimensions = new SizeF(9F, 21F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             BackgroundImage = Properties.Resources.background;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(905, 526);
+            ClientSize = new Size(804, 501);
+            Controls.Add(textBox1);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(button1);
@@ -208,5 +218,6 @@
         private Button button1;
         private Label label5;
         private Label label6;
+        private TextBox textBox1;
     }
 }

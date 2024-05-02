@@ -17,19 +17,18 @@ namespace WinFormsAppPingPong
         int alienCounter, cyborgCounter;
         bool ballMove = true;
 
-        IPlayer player;
+        private IPlayer player;
 
         public Game()
         {
-            InitializeComponent();
-            
-
+            InitializeComponent();  
         }
 
-        public Game(int ballSpeedX, int ballSpeedY, bool isHost)
+        public Game(int ballSpeedX, int ballSpeedY, IPlayer player)
         {
             this.ballSpeedX = ballSpeedX;
             this.ballSpeedY = ballSpeedY;
+            this.player = player;
 
             InitializeComponent();
             this.Size = Screen.PrimaryScreen.Bounds.Size;

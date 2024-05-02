@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppPingPong.Temporary.AdditionalClasses
 {
-    internal interface IPlayer
+    public interface IPlayer
     {
         public Task Send();
         public void StartReceivingLoop();

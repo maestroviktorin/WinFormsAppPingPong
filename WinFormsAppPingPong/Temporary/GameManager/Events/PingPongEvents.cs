@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WinFormsAppPingPong.Temporary.GameManager.Events
 {
-    public class Events
+    public class PingPongEvents
     {
         public static Action<PlayerJoinEvent> OnPlayerJoin = (PlayerJoinEvent p) => { };
 

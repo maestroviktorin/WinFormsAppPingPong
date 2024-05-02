@@ -18,8 +18,8 @@ namespace PingPong.GameManager
     {
         public const int PORT = 8079;
         private Socket socket;
-        private EndPoint ownEndPoint;
-        private EndPoint connectedEndPoint;
+        public IPEndPoint ownEndPoint {  get; private set; }
+        public EndPoint connectedEndPoint { get; private set; }
         SendGameDataDto data2Send;
         PingPongData gameData;
         Game gameForm;
@@ -27,6 +27,11 @@ namespace PingPong.GameManager
 
         private byte[] buffer;
         private ArraySegment<byte> bufferSegment;
+
+        public Host()
+        {
+            ownEndPoint = new IPEndPoint(LocalIPAddress(), PORT);
+        }
 
         public Host Setup(Game game)
         {
@@ -52,6 +57,8 @@ namespace PingPong.GameManager
             {
                 var info = await socket.ReceiveMessageFromAsync(bufferSegment, connectedEndPoint);
                 connectedEndPoint = info.RemoteEndPoint;
+                PingPongData.Instance.ClientName = Encoding.UTF8.GetString(bufferSegment);
+                await socket.SendToAsync(Encoding.UTF8.GetBytes(PingPongData.Instance.HostName), connectedEndPoint);
                 return true;
             }
             catch (Exception ex)
