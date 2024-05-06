@@ -33,9 +33,8 @@ namespace PingPong.GameManager
             ownEndPoint = new IPEndPoint(LocalIPAddress(), PORT);
         }
 
-        public Host Setup(Game game)
+        public Host Setup()
         {
-            gameForm = game;
 
             buffer = new byte[4096];
             bufferSegment = new ArraySegment<byte>(buffer);
@@ -51,6 +50,12 @@ namespace PingPong.GameManager
             return this;
         }
 
+        public Host AddGame(Game game)
+        {
+            gameForm = game;
+            return this;
+        }
+
         async public Task<bool> WaitForOtherConnection()
         {
             try
@@ -59,6 +64,10 @@ namespace PingPong.GameManager
                 connectedEndPoint = info.RemoteEndPoint;
                 PingPongData.Instance.ClientName = Encoding.UTF8.GetString(bufferSegment);
                 await socket.SendToAsync(Encoding.UTF8.GetBytes(PingPongData.Instance.HostName), connectedEndPoint);
+
+                PlayerJoinEvent evt = new PlayerJoinEvent(connectedEndPoint);
+
+                PingPongEvents.OnPlayerJoin.Invoke(evt);
                 return true;
             }
             catch (Exception ex)
@@ -86,26 +95,6 @@ namespace PingPong.GameManager
             SocketReceiveMessageFromResult res;
             Task.Run(async () =>
             {
-                // waiting for first message that must be a name of user
-                // TODO
-                while (true)
-                {
-                    try
-                    {
-                        res = await socket.ReceiveMessageFromAsync(bufferSegment, ep);
-
-                        connectedEndPoint = ep;
-                        string name = JsonSerializer.Deserialize<string>(bufferSegment);
-                        //await socket.SendToAsync()
-
-                        break;
-                    }
-                    catch
-                    {
-                        // do smt
-                    }
-                }
-
                 while (true)
                 {
                     try
@@ -144,6 +133,8 @@ namespace PingPong.GameManager
 
         public void Run()
         {
+
+
             if (gameData.ClientInputUp)
             {
                 gameForm.MoveAlienBy(gameForm.playerSpeed);
@@ -159,6 +150,14 @@ namespace PingPong.GameManager
             if (gameData.HostInputDown)
             {
                 gameForm.MoveCyborgBy(-gameForm.playerSpeed);
+            }
+        }
+        public void Destroy()
+        {
+            if (socket  != null)
+            {
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
             }
         }
     }

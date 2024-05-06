@@ -24,6 +24,11 @@ namespace WinFormsAppPingPong
         int magicNum1 = 32;
         int magicNum2 = 32;
 
+        bool isHost = false;
+        bool isClient = false;
+
+        bool isReady;
+
         public MenuForm()
         {
             InitializeComponent();
@@ -32,6 +37,9 @@ namespace WinFormsAppPingPong
             menuPlayer.PlayLooping();
 
             PingPongEvents.OnPlayerJoin = ActivateGame;
+
+            JoinPanel.Visible = false;
+            HostPanel.Visible = false;
         }
 
         protected override void WndProc(ref Message m)
@@ -55,10 +63,22 @@ namespace WinFormsAppPingPong
 
         private void HostButtonClick(object sender, EventArgs e)
         {
-            menuPlayer.Stop();
-            var music = Resources.easy;
-            System.Media.SoundPlayer soundPlayer = new System.Media.SoundPlayer(music);
-            soundPlayer.PlayLooping();
+            try
+            {
+                if (player != null) player.Destroy();
+
+            }
+            catch { }
+
+            this.isClient = false;
+            this.isHost = true;
+            this.JoinPanel.Visible = false;
+            this.HostPanel.Visible = true;
+
+            //menuPlayer.Stop();
+            //var music = Resources.medium;
+            //System.Media.SoundPlayer soundPlayer = new System.Media.SoundPlayer(music);
+            //soundPlayer.PlayLooping();
 
             Host host = new Host();
             IPAddress ip = host.ownEndPoint.Address;
@@ -69,62 +89,64 @@ namespace WinFormsAppPingPong
             // show in panel ip and host
             // wait for the other connection
 
-            Game game = new Game(3, 3, null);
-            game.ShowDialog();
+            this.HostIpLabel.Text = $"Local IP: {ip.ToString()}";
+            this.HostPortLabel.Text = $"Local port: {port}";
 
-            soundPlayer.Stop();
-            menuPlayer.PlayLooping();
+            host.WaitForOtherConnection();
+
+            //soundPlayer.Stop();
+            //menuPlayer.PlayLooping();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            menuPlayer.Stop();
-            var music = Resources.medium;
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(music);
-            player.PlayLooping();
-
-            Game game = new Game(5, 5, null);
-            game.ShowDialog();
-
-            player.Stop();
-            menuPlayer.PlayLooping();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            menuPlayer.Stop();
-            var music = Resources.hard;
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(music);
-            player.PlayLooping();
-
-            Game game = new Game(7, 7, null);
-            game.ShowDialog();
-
-            player.Stop();
-            menuPlayer.PlayLooping();
-        }
 
         private void JoinButtonClick(object sender, EventArgs e)
         {
+            try
+            {
+                if (player != null) player.Destroy();
+            }
+            catch { }
+
+            this.isClient = true;
+            this.isHost = false;
+            this.JoinPanel.Visible = true;
+            this.HostPanel.Visible = false;
+
             // wait for IP and Port to be written
             Client client = new Client().Setup();
             player = client;
+
 
             // show fields for ip and port
         }
 
         private void IPAndPortSubmit(object sender, EventArgs e)
         {
-            // ip = textbox.text
-            // port = tbx2.text
+            string Ip = this.IpInput.Text;
+            string Port = this.PortInput.Text;
 
-            // (player as Client).ConnectToHost(ip, port);
+            IPAddress ip;
+            int port;
+            try
+            {
+                ip = IPAddress.Parse(Ip);
+                port = int.Parse(Port);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Invalid IP or Port");
+                return;
+            }
+
+            (player as Client).ConnectToHost(ip, port);
         }
 
         private void ActivateGame(PlayerJoinEvent e)
         {
             new Game(5, 5, player);
         }
+
 
         // TODO
         // add a create game as host and create game as Client with giving it ipaddress of the host

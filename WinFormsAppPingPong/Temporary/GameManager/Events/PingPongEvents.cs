@@ -16,10 +16,10 @@ namespace WinFormsAppPingPong.Temporary.GameManager.Events
 
     public class PlayerJoinEvent
     {
-        public IPAddress playerIP;
-        public PlayerJoinEvent(IPAddress playerIP)
+        public EndPoint playerIP;
+        public PlayerJoinEvent(EndPoint ep)
         {
-            this.playerIP = playerIP;
+            this.playerIP = ep;
         }
     }
 }

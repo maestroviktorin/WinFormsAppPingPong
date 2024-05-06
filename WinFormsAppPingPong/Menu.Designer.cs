@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             easy = new Button();
-            medium = new Button();
-            hard = new Button();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -38,7 +36,17 @@
             button1 = new Button();
             label5 = new Label();
             label6 = new Label();
-            textBox1 = new TextBox();
+            HostPanel = new Panel();
+            PlayersConnectedLabel = new Label();
+            HostPortLabel = new Label();
+            HostIpLabel = new Label();
+            JoinPanel = new Panel();
+            PortInput = new TextBox();
+            IpInput = new TextBox();
+            SubmitIpPort = new Button();
+            label8 = new Label();
+            HostPanel.SuspendLayout();
+            JoinPanel.SuspendLayout();
             SuspendLayout();
             // 
             // easy
@@ -47,7 +55,7 @@
             easy.BackColor = Color.Ivory;
             easy.Font = new Font("Cascadia Mono", 25.92F, FontStyle.Bold, GraphicsUnit.Point, 0);
             easy.ForeColor = Color.CornflowerBlue;
-            easy.Location = new Point(12, 309);
+            easy.Location = new Point(118, 309);
             easy.Margin = new Padding(4, 3, 4, 3);
             easy.Name = "easy";
             easy.Size = new Size(92, 81);
@@ -55,36 +63,6 @@
             easy.Text = "😊";
             easy.UseVisualStyleBackColor = false;
             easy.Click += HostButtonClick;
-            // 
-            // medium
-            // 
-            medium.Anchor = AnchorStyles.None;
-            medium.BackColor = Color.Ivory;
-            medium.Font = new Font("Cascadia Mono", 25.92F, FontStyle.Bold);
-            medium.ForeColor = Color.Orange;
-            medium.Location = new Point(110, 309);
-            medium.Margin = new Padding(4, 3, 4, 3);
-            medium.Name = "medium";
-            medium.Size = new Size(92, 81);
-            medium.TabIndex = 5;
-            medium.Text = "🙃";
-            medium.UseVisualStyleBackColor = false;
-            medium.Click += button2_Click;
-            // 
-            // hard
-            // 
-            hard.Anchor = AnchorStyles.None;
-            hard.BackColor = Color.Ivory;
-            hard.Font = new Font("Cascadia Mono", 25.92F, FontStyle.Bold);
-            hard.ForeColor = Color.Crimson;
-            hard.Location = new Point(209, 309);
-            hard.Margin = new Padding(4, 3, 4, 3);
-            hard.Name = "hard";
-            hard.Size = new Size(92, 81);
-            hard.TabIndex = 6;
-            hard.Text = "☠️";
-            hard.UseVisualStyleBackColor = false;
-            hard.Click += button3_Click;
             // 
             // label1
             // 
@@ -173,12 +151,113 @@
             label6.TabIndex = 13;
             label6.Text = "👽";
             // 
-            // textBox1
+            // HostPanel
             // 
-            textBox1.Location = new Point(474, 442);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 14;
+            HostPanel.Anchor = AnchorStyles.None;
+            HostPanel.BackColor = Color.Transparent;
+            HostPanel.BackgroundImageLayout = ImageLayout.Center;
+            HostPanel.Controls.Add(PlayersConnectedLabel);
+            HostPanel.Controls.Add(HostPortLabel);
+            HostPanel.Controls.Add(HostIpLabel);
+            HostPanel.Location = new Point(11, 128);
+            HostPanel.Name = "HostPanel";
+            HostPanel.Size = new Size(387, 376);
+            HostPanel.TabIndex = 15;
+            // 
+            // PlayersConnectedLabel
+            // 
+            PlayersConnectedLabel.Anchor = AnchorStyles.Left;
+            PlayersConnectedLabel.BackColor = Color.Transparent;
+            PlayersConnectedLabel.Font = new Font("Cascadia Mono", 12F, FontStyle.Bold);
+            PlayersConnectedLabel.ForeColor = Color.Ivory;
+            PlayersConnectedLabel.Location = new Point(13, 284);
+            PlayersConnectedLabel.Margin = new Padding(4, 0, 4, 0);
+            PlayersConnectedLabel.Name = "PlayersConnectedLabel";
+            PlayersConnectedLabel.Size = new Size(232, 39);
+            PlayersConnectedLabel.TabIndex = 19;
+            PlayersConnectedLabel.Text = "Waiting...";
+            PlayersConnectedLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // HostPortLabel
+            // 
+            HostPortLabel.Anchor = AnchorStyles.None;
+            HostPortLabel.BackColor = Color.Transparent;
+            HostPortLabel.Font = new Font("Cascadia Mono", 18F, FontStyle.Bold);
+            HostPortLabel.ForeColor = Color.Ivory;
+            HostPortLabel.Location = new Point(-209, 79);
+            HostPortLabel.Margin = new Padding(4, 0, 4, 0);
+            HostPortLabel.Name = "HostPortLabel";
+            HostPortLabel.Size = new Size(804, 64);
+            HostPortLabel.TabIndex = 18;
+            HostPortLabel.Text = "Port: 8079";
+            HostPortLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // HostIpLabel
+            // 
+            HostIpLabel.Anchor = AnchorStyles.None;
+            HostIpLabel.BackColor = Color.Transparent;
+            HostIpLabel.Font = new Font("Cascadia Mono", 18F, FontStyle.Bold);
+            HostIpLabel.ForeColor = Color.Ivory;
+            HostIpLabel.Location = new Point(-209, 7);
+            HostIpLabel.Margin = new Padding(4, 0, 4, 0);
+            HostIpLabel.Name = "HostIpLabel";
+            HostIpLabel.Size = new Size(804, 72);
+            HostIpLabel.TabIndex = 17;
+            HostIpLabel.Text = "Local IP: 127.0.0.1";
+            HostIpLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // JoinPanel
+            // 
+            JoinPanel.Anchor = AnchorStyles.None;
+            JoinPanel.BackColor = Color.Transparent;
+            JoinPanel.BackgroundImageLayout = ImageLayout.Center;
+            JoinPanel.Controls.Add(PortInput);
+            JoinPanel.Controls.Add(IpInput);
+            JoinPanel.Controls.Add(SubmitIpPort);
+            JoinPanel.Controls.Add(label8);
+            JoinPanel.Location = new Point(405, 128);
+            JoinPanel.Name = "JoinPanel";
+            JoinPanel.Size = new Size(387, 376);
+            JoinPanel.TabIndex = 16;
+            // 
+            // PortInput
+            // 
+            PortInput.Location = new Point(88, 116);
+            PortInput.Name = "PortInput";
+            PortInput.Size = new Size(198, 27);
+            PortInput.TabIndex = 22;
+            // 
+            // IpInput
+            // 
+            IpInput.Location = new Point(88, 65);
+            IpInput.Name = "IpInput";
+            IpInput.Size = new Size(198, 27);
+            IpInput.TabIndex = 21;
+            // 
+            // SubmitIpPort
+            // 
+            SubmitIpPort.Anchor = AnchorStyles.None;
+            SubmitIpPort.Location = new Point(143, 210);
+            SubmitIpPort.Name = "SubmitIpPort";
+            SubmitIpPort.Size = new Size(94, 29);
+            SubmitIpPort.TabIndex = 20;
+            SubmitIpPort.Text = "Join";
+            SubmitIpPort.UseVisualStyleBackColor = true;
+            SubmitIpPort.Click += IPAndPortSubmit;
+            // 
+            // label8
+            // 
+            label8.Anchor = AnchorStyles.Left;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Cascadia Mono", 12F, FontStyle.Bold);
+            label8.ForeColor = Color.Ivory;
+            label8.Location = new Point(13, 422);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(232, 39);
+            label8.TabIndex = 19;
+            label8.Text = "Players: 1/2";
+            label8.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // MenuForm
             // 
@@ -188,7 +267,8 @@
             BackgroundImage = Properties.Resources.background;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(804, 501);
-            Controls.Add(textBox1);
+            Controls.Add(JoinPanel);
+            Controls.Add(HostPanel);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(button1);
@@ -196,28 +276,35 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(hard);
-            Controls.Add(medium);
             Controls.Add(easy);
             DoubleBuffered = true;
             Margin = new Padding(4, 3, 4, 3);
             Name = "MenuForm";
             Text = "Menu";
+            HostPanel.ResumeLayout(false);
+            JoinPanel.ResumeLayout(false);
+            JoinPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private Button easy;
-        private Button medium;
-        private Button hard;
         private Label label1;
-        private Label label2;
         private Label label3;
         private Label label4;
         private Button button1;
         private Label label5;
         private Label label6;
-        private TextBox textBox1;
+        public Label label2;
+        public Panel HostPanel;
+        private Label HostIpLabel;
+        private Label HostPortLabel;
+        public Panel JoinPanel;
+        private Button SubmitIpPort;
+        private Label label8;
+        private TextBox PortInput;
+        private TextBox IpInput;
+        private Label PlayersConnectedLabel;
     }
 }

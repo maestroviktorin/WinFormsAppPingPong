@@ -26,6 +26,14 @@ namespace WinFormsAppPingPong
 
         public Game(int ballSpeedX, int ballSpeedY, IPlayer player)
         {
+
+            if (player.GetType() == typeof(Host))
+            {
+                (player as Host).AddGame(this);
+            }
+
+            player.StartReceivingLoop();
+
             this.ballSpeedX = ballSpeedX;
             this.ballSpeedY = ballSpeedY;
             this.player = player;
@@ -45,6 +53,8 @@ namespace WinFormsAppPingPong
                 obj.Update();
             }
 
+            player.Send();
+            player.Run();
 
             if (ballMove)
             {

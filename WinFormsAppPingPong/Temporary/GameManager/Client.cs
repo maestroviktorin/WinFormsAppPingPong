@@ -23,9 +23,9 @@ namespace PingPong.GameManager
         private byte[] buffer;
         private ArraySegment<byte> bufferSegment;
 
-        public static Client Create(IPAddress address, int port)
+        public Client()
         {
-            return new Client().Setup(address, port);
+
         }
 
         public Client Setup()
@@ -125,5 +125,11 @@ namespace PingPong.GameManager
         {
             // Do nothing
         }
+
+        public void Destroy()
+        {
+            socket.Dispose();
+        }
+
     }
 }
