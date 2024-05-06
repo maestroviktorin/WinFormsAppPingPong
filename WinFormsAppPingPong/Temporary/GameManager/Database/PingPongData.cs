@@ -23,14 +23,10 @@ namespace WinFormsAppPingPong.Temporary.GameManager.Database
 
         public Point BallPosition { get; set; }
 
-        public Point BallMovementVector { get; set; }
-
-
         public bool HostInputUp { get; set; }
-        public bool HostInputDown { get; set; }
-        public int HostInput { get; set; }
-        public bool ClientInputUp { get; set; }
-        public bool ClientInputDown { get; set; }
+        public bool HostInputDown { get; set; } 
+        public bool ClientInputUp { get; set; } 
+        public bool ClientInputDown { get; set; } 
 
         public int HostScore { get; set; }
         public int ClientScore { get; set; }

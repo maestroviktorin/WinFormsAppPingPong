@@ -93,18 +93,21 @@ namespace PingPong.GameManager
             PingPongData data = PingPongData.Instance;
             SendInputDto dto;
             SocketReceiveMessageFromResult res;
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.DefaultBufferSize = 34;
             Task.Run(async () =>
             {
                 while (true)
                 {
                     try
                     {
-                        res = await socket.ReceiveMessageFromAsync(bufferSegment, ep);
-                        if (res.RemoteEndPoint != connectedEndPoint)
+                        res = await socket.ReceiveMessageFromAsync(buffer, ep);
+                        if (res.RemoteEndPoint.ToString() != connectedEndPoint.ToString())
                         {
                             continue;
                         }
-                        dto = JsonSerializer.Deserialize<SendInputDto>(bufferSegment);
+                        byte[] segment = bufferSegment.Array.Where((x, i) => i < res.ReceivedBytes).ToArray();
+                        dto = JsonSerializer.Deserialize<SendInputDto>(segment, JsonSerializerOptions.Default);
                         data.ClientInputUp = dto.InputUp;
                         data.ClientInputDown = dto.InputDown;
                     }
@@ -133,24 +136,96 @@ namespace PingPong.GameManager
 
         public void Run()
         {
-
+            gameForm.CheckCollisions();
 
             if (gameData.ClientInputUp)
             {
-                gameForm.MoveAlienBy(gameForm.playerSpeed);
+                gameData.ClientPosition = new Point(
+                    gameData.ClientPosition.X, 
+                    gameData.ClientPosition.Y - gameForm.playerSpeed
+                    );
             }
             if (gameData.ClientInputDown)
             {
-                gameForm.MoveAlienBy(-gameForm.playerSpeed);
+                gameData.ClientPosition = new Point(
+                    gameData.ClientPosition.X,
+                    gameData.ClientPosition.Y + gameForm.playerSpeed
+                    );
             }
             if (gameData.HostInputUp)
             {
-                gameForm.MoveCyborgBy(gameForm.playerSpeed);
+                gameData.HostPosition = new Point(
+                    gameData.HostPosition.X,
+                    gameData.HostPosition.Y - gameForm.playerSpeed
+                    );
             }
             if (gameData.HostInputDown)
             {
-                gameForm.MoveCyborgBy(-gameForm.playerSpeed);
+                gameData.HostPosition = new Point(
+                    gameData.HostPosition.X,
+                    gameData.HostPosition.Y + gameForm.playerSpeed
+                    );
             }
+            if (gameData.ClientPosition.Y < 0) 
+            {
+                gameData.ClientPosition = new Point(gameData.ClientPosition.X, 0);
+            }
+            if (gameData.ClientPosition.Y + gameForm.alien.Height > gameForm.heightBorder)
+            {
+                gameData.ClientPosition = new Point(gameData.ClientPosition.X, gameForm.heightBorder - gameForm.alien.Height);
+            }
+            if (gameData.HostPosition.Y < 0)
+            {
+                gameData.HostPosition = new Point(gameData.HostPosition.X, 0);
+            }
+            if (gameData.HostPosition.Y + gameForm.cyborg.Height > gameForm.heightBorder)
+            {
+                gameData.HostPosition = new Point(gameData.HostPosition.X, gameForm.heightBorder - gameForm.cyborg.Height);
+            }
+
+            if (gameForm.ballMove)
+            {
+                gameData.BallPosition = new Point(
+                    gameData.BallPosition.X - gameForm.ballSpeedX, 
+                    gameData.BallPosition.Y - gameForm.ballSpeedY);
+                if (gameData.BallPosition.Y <= 0 || 
+                    gameData.BallPosition.Y + gameForm.ball.Height >= gameForm.heightBorder)
+                {
+                    gameForm.ballSpeedY = -gameForm.ballSpeedY;
+                }
+            }
+
+            if (gameData.BallPosition.X + gameForm.ball.Width >= gameForm.Width)
+            {
+                gameData.HostScore++;
+                gameForm.NewRound();
+            }
+            if (gameData.BallPosition.X <= 0)
+            {
+                gameData.ClientScore++;
+                gameForm.NewRound();
+            }
+            //if (ballMove)
+            //{
+            //    ball.Top -= ballSpeedY;
+            //    ball.Left -= ballSpeedX;
+
+            //    if (ball.Top <= 0 || ball.Bottom >= ClientSize.Height)
+            //    {
+            //        ballSpeedY = -ballSpeedY;
+            //    }
+            //}
+
+            //if (ball.Left > ClientSize.Width)
+            //{
+            //    ++cyborgCounter;
+            //    NewRound();
+            //}
+            //if (ball.Right < 0)
+            //{
+            //    ++alienCounter;
+            //    NewRound();
+            //}
         }
         public void Destroy()
         {

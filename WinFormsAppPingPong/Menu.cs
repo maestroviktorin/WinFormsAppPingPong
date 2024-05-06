@@ -146,8 +146,9 @@ namespace WinFormsAppPingPong
 
         private void ActivateGame(PlayerJoinEvent e)
         {
-            var game = new Game(5, 5, player);
+            var game = new Game(2, 2, player, this);
             game.Show();
+            this.Hide();
         }
 
 

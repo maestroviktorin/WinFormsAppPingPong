@@ -83,7 +83,8 @@ namespace PingPong.GameManager
                     res = await socket.ReceiveMessageFromAsync(bufferSegment, SocketFlags.None, connectedEndPoint);
                     try
                     {
-                        data = JsonSerializer.Deserialize<SendGameDataDto>(bufferSegment);
+                        byte[] segment = bufferSegment.Array.Where((x, i) => i < res.ReceivedBytes).ToArray();
+                        data = JsonSerializer.Deserialize<SendGameDataDto>(segment);
                         mainData.BallPosition = data.BallPosition;
                         mainData.HostPosition = data.HostPosition;
                         mainData.ClientPosition = data.ClientPosition;

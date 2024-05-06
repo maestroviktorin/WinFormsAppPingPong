@@ -44,6 +44,7 @@
             alienCounterLabel = new Label();
             upButtonLabel = new Label();
             downButtonLabel = new Label();
+            BallPosLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)alien).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cyborg).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ball).BeginInit();
@@ -146,11 +147,17 @@
             resources.ApplyResources(downButtonLabel, "downButtonLabel");
             downButtonLabel.Name = "downButtonLabel";
             // 
+            // BallPosLabel
+            // 
+            resources.ApplyResources(BallPosLabel, "BallPosLabel");
+            BallPosLabel.Name = "BallPosLabel";
+            // 
             // Game
             // 
+            AutoScaleMode = AutoScaleMode.Inherit;
             resources.ApplyResources(this, "$this");
-            AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Beige;
+            Controls.Add(BallPosLabel);
             Controls.Add(downButtonLabel);
             Controls.Add(upButtonLabel);
             Controls.Add(alienFront);
@@ -166,7 +173,8 @@
             Controls.Add(cyborgCounterLabel);
             DoubleBuffered = true;
             Name = "Game";
-            WindowState = FormWindowState.Maximized;
+            FormClosed += Game_FormClosed;
+            Load += Game_Load;
             KeyDown += Game_KeyDown;
             KeyUp += Game_KeyUp;
             ((System.ComponentModel.ISupportInitialize)alien).EndInit();
@@ -183,11 +191,7 @@
         }
 
         #endregion
-
-        private PictureBox alien;
-        private PictureBox cyborg;
         private System.Windows.Forms.Timer Timer;
-        private PictureBox ball;
         private PictureBox cyborgTop;
         private PictureBox cyborgBottom;
         private PictureBox alienBottom;
@@ -198,5 +202,9 @@
         private Label alienCounterLabel;
         private Label upButtonLabel;
         private Label downButtonLabel;
+        public PictureBox alien;
+        public PictureBox cyborg;
+        public PictureBox ball;
+        private Label BallPosLabel;
     }
 }

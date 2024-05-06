@@ -12,19 +12,20 @@ namespace WinFormsAppPingPong
         public int ballSpeedX = 3;
         public int ballSpeedY = 3;
         public int playerSpeed = 4;
-        bool alienUp, alienDown;
-        bool cyborgUp, cyborgDown;
         int alienCounter, cyborgCounter;
-        bool ballMove = true;
+        public bool ballMove = true;
+        public Size clientSize;
+        public int heightBorder;
 
         private IPlayer player;
+        private MenuForm menu;
 
         public Game()
         {
-            InitializeComponent();  
+            InitializeComponent();
         }
 
-        public Game(int ballSpeedX, int ballSpeedY, IPlayer player)
+        public Game(int ballSpeedX, int ballSpeedY, IPlayer player, MenuForm menu) : base()
         {
 
             if (player.GetType() == typeof(Host))
@@ -37,9 +38,17 @@ namespace WinFormsAppPingPong
             this.ballSpeedX = ballSpeedX;
             this.ballSpeedY = ballSpeedY;
             this.player = player;
+            this.menu = menu;
+
+            this.clientSize = ClientSize;
+            heightBorder =this.Size.Height + 134;
 
             InitializeComponent();
-            this.Size = Screen.PrimaryScreen.Bounds.Size;
+
+            PingPongData.Instance.HostPosition = cyborg.Location;
+            PingPongData.Instance.ClientPosition = alien.Location;
+            PingPongData.Instance.BallPosition = ball.Location;
+
 
             //if (isHost) player = new Host().Setup(this);
             //else player = new Client().Setup();
@@ -48,46 +57,51 @@ namespace WinFormsAppPingPong
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            foreach (var obj in UpdateObject.objects)
-            {
-                obj.Update();
-            }
-
+            // Sends positions
             player.Send();
+            // Do logic if host
             player.Run();
+            // Render players and balls
+            AdjustPositions();
 
-            if (ballMove)
-            {
-                ball.Top -= ballSpeedY;
-                ball.Left -= ballSpeedX;
 
-                if (ball.Top <= 0 || ball.Bottom >= ClientSize.Height)
-                {
-                    ballSpeedY = -ballSpeedY;
-                }
-            }
 
-            if (ball.Left > ClientSize.Width)
-            {
-                ++cyborgCounter;
-                NewRound();
-            }
-            if (ball.Right < 0)
-            {
-                ++alienCounter;
-                NewRound();
-            }
+            upButtonLabel.Text = $"{PingPongData.Instance.HostPosition}: {PingPongData.Instance.HostInputUp}, {PingPongData.Instance.HostInputDown}";
+            downButtonLabel.Text = $"{PingPongData.Instance.ClientPosition}: {PingPongData.Instance.ClientInputUp}, {PingPongData.Instance.ClientInputDown}";
+            BallPosLabel.Text = $"{PingPongData.Instance.BallPosition} {this.clientSize}";
 
-            
+            //if (ballMove)
+            //{
+            //    ball.Top -= ballSpeedY;
+            //    ball.Left -= ballSpeedX;
+
+            //    if (ball.Top <= 0 || ball.Bottom >= ClientSize.Height)
+            //    {
+            //        ballSpeedY = -ballSpeedY;
+            //    }
+            //}
+
+            //if (ball.Left > ClientSize.Width)
+            //{
+            //    ++cyborgCounter;
+            //    NewRound();
+            //}
+            //if (ball.Right < 0)
+            //{
+            //    ++alienCounter;
+            //    NewRound();
+            //}
+
+
 
             // !!! WARNING !!!
             //MoveAlienBy(PingPongData.Instance.ClientInput * playerSpeed);
             //MoveAlienBy(PingPongData.Instance.HostInput * playerSpeed);
 
-            alienCounterLabel.Text = alienCounter.ToString();
-            cyborgCounterLabel.Text = cyborgCounter.ToString();
+            //alienCounterLabel.Text = alienCounter.ToString();
+            //cyborgCounterLabel.Text = cyborgCounter.ToString();
 
-            CheckCollisions();
+            //CheckCollisions();
         }
 
         // !!! WARNING !!!
@@ -96,21 +110,10 @@ namespace WinFormsAppPingPong
             if (e.KeyCode == Keys.Down)
             {
                 PingPongData.Instance.HostInputDown = true;
-                downButtonLabel.Text = "1";
             }
             if (e.KeyCode == Keys.Up)
             {
                 PingPongData.Instance.HostInputUp = true;
-                upButtonLabel.Text = "1";
-            }
-
-            if (e.KeyCode == Keys.W)
-            {
-                cyborgUp = true;
-            }
-            if (e.KeyCode == Keys.S)
-            {
-                cyborgDown = true;
             }
 
             if (e.KeyCode == Keys.Space)
@@ -122,30 +125,13 @@ namespace WinFormsAppPingPong
         // !!! WARNING !!!
         private void Game_KeyUp(object sender, KeyEventArgs e)
         {
-            if (
-                (e.KeyCode == Keys.Down && PingPongData.Instance.HostInput != -1) ||
-                (e.KeyCode == Keys.Up && PingPongData.Instance.HostInput != 1)
-                )
+            if (e.KeyCode == Keys.Down && PingPongData.Instance.HostInputDown)
             {
-                PingPongData.Instance.HostInput = 0;
+                PingPongData.Instance.HostInputDown = false;
             }
-
-            if (e.KeyCode == Keys.Down)
+            if (e.KeyCode == Keys.Up && PingPongData.Instance.HostInputUp)
             {
-                downButtonLabel.Text = "0";
-            }
-            if (e.KeyCode == Keys.Up)
-            {
-                upButtonLabel.Text = "0";
-            }
-
-            if (e.KeyCode == Keys.W)
-            {
-                cyborgUp = false;
-            }
-            if (e.KeyCode == Keys.S)
-            {
-                cyborgDown = false;
+                PingPongData.Instance.HostInputUp = false;
             }
 
             if (e.KeyCode == Keys.Space)
@@ -172,40 +158,56 @@ namespace WinFormsAppPingPong
             cyborgFront.Top += speed;
         }
 
-        private void CheckCollisions()
+        public void CheckCollisions()
         {
             if (ball.Bounds.IntersectsWith(cyborgFront.Bounds)
-                && (ball.Bounds.IntersectsWith(cyborgTop.Bounds) || ball.Bounds.IntersectsWith(cyborgBottom.Bounds)))
+                && (ball.Bounds.IntersectsWith(cyborgTop.Bounds)
+                || ball.Bounds.IntersectsWith(cyborgBottom.Bounds)))
             {
                 ballSpeedX = -ballSpeedX;
                 ballSpeedY = -ballSpeedY;
-                ball.Left = cyborg.Right + ballSpeedX;
-                ball.Top += ballSpeedY;
+                PingPongData.Instance.BallPosition = new Point(
+                    cyborg.Right - ballSpeedX,
+                    ball.Top - ballSpeedY
+                    );
                 return;
             }
             if (ball.Bounds.IntersectsWith(cyborgTop.Bounds))
             {
                 if (ballSpeedY < 0) ballSpeedY = -ballSpeedY;
-                ball.Top = cyborg.Top - ball.Height;
-                ball.Left += ballSpeedX;
+                //ball.Location
+                PingPongData.Instance.BallPosition = new Point(
+                     ball.Left - ballSpeedX,
+                     cyborg.Top - ball.Height
+                    );
+                //ball.Top = cyborg.Top - ball.Height;
+                //ball.Left += ballSpeedX;
 
-                MoveCyborgBy(Math.Abs(ballSpeedY) * playerSpeed);
+                //MoveCyborgBy(Math.Abs(ballSpeedY) * playerSpeed);
                 return;
             }
             if (ball.Bounds.IntersectsWith(cyborgBottom.Bounds))
             {
                 if (ballSpeedY > 0) ballSpeedY = -ballSpeedY;
-                ball.Top = cyborg.Bottom + ball.Height;
-                ball.Left += ballSpeedX;
+                PingPongData.Instance.BallPosition = new Point(
+                    ball.Left - ballSpeedX,
+                    cyborg.Bottom + ball.Height
+                    );
+                //ball.Top = cyborg.Bottom + ball.Height;
+                //ball.Left += ballSpeedX;
 
-                MoveCyborgBy(Math.Abs(ballSpeedY) * (-playerSpeed));
+                //MoveCyborgBy(Math.Abs(ballSpeedY) * (-playerSpeed));
                 return;
             }
             if (ball.Bounds.IntersectsWith(cyborgFront.Bounds))
             {
                 ballSpeedX = -ballSpeedX;
-                ball.Left = cyborg.Right + ballSpeedX;
-                ball.Top += ballSpeedY;
+                PingPongData.Instance.BallPosition = new Point(
+                    cyborg.Right - ballSpeedX,
+                    ball.Top + ballSpeedY
+                    );
+                //ball.Left = cyborg.Right + ballSpeedX;
+                //ball.Top += ballSpeedY;
                 return;
             }
 
@@ -214,55 +216,109 @@ namespace WinFormsAppPingPong
             {
                 ballSpeedX = -ballSpeedX;
                 ballSpeedY = -ballSpeedY;
-                ball.Left = alien.Left + ballSpeedX - ball.Width;
-                ball.Top += ballSpeedY;
+                PingPongData.Instance.BallPosition = new Point(
+                    alien.Left - ballSpeedX - ball.Width,
+                    ball.Top + ballSpeedY
+                    );
+                //ball.Left = alien.Left + ballSpeedX - ball.Width;
+                //ball.Top += ballSpeedY;
                 return;
             }
             if (ball.Bounds.IntersectsWith(alienTop.Bounds))
             {
                 if (ballSpeedY < 0) ballSpeedY = -ballSpeedY;
-                ball.Top = alien.Top - ballSpeedY - ball.Height;
-                ball.Left += ballSpeedX;
+                PingPongData.Instance.BallPosition = new Point(
+                     ball.Left - ballSpeedX,
+                     alien.Top - ballSpeedY - ball.Height
+                    );
+                //ball.Top = alien.Top - ballSpeedY - ball.Height;
+                //ball.Left += ballSpeedX;
 
-                MoveAlienBy(Math.Abs(ballSpeedY) * playerSpeed);
+                //MoveAlienBy(Math.Abs(ballSpeedY) * playerSpeed);
                 return;
             }
             if (ball.Bounds.IntersectsWith(alienBottom.Bounds))
             {
                 if (ballSpeedY > 0) ballSpeedY = -ballSpeedY;
-                ball.Top = alien.Bottom + ballSpeedY;
-                ball.Left += ballSpeedX;
+                PingPongData.Instance.BallPosition = new Point(
+                    ball.Left - ballSpeedX,
+                    alien.Bottom + ballSpeedY
+                    );
+                //ball.Top = alien.Bottom + ballSpeedY;
+                //ball.Left += ballSpeedX;
 
-                MoveAlienBy(Math.Abs(ballSpeedY) * (-playerSpeed));
+                //MoveAlienBy(Math.Abs(ballSpeedY) * (-playerSpeed));
                 return;
             }
             if (ball.Bounds.IntersectsWith(alienFront.Bounds))
             {
                 ballSpeedX = -ballSpeedX;
-                ball.Left = alien.Left + ballSpeedX - ball.Width;
-                ball.Top += ballSpeedY;
+                PingPongData.Instance.BallPosition = new Point(
+                    alien.Left + ballSpeedX - ball.Width,
+                    ball.Top + ballSpeedY
+                    );
+                //ball.Left = alien.Left + ballSpeedX - ball.Width;
+                //ball.Top += ballSpeedY;
                 return;
             }
         }
 
-        private void NewRound()
+        public void AdjustPositions()
+        {
+            cyborg.Location = PingPongData.Instance.HostPosition;
+            cyborgBottom.Location = new Point(cyborg.Location.X,
+                                                cyborg.Location.Y + cyborg.Height - 1);
+            cyborgTop.Location = cyborg.Location;
+            cyborgFront.Location = new Point(cyborg.Location.X + cyborg.Width,
+                                            cyborg.Location.Y);
+
+            alien.Location = PingPongData.Instance.ClientPosition;
+            alienBottom.Location = new Point(alien.Location.X,
+                                                alien.Location.Y + alien.Height - 1);
+            alienTop.Location = alien.Location;
+            alienFront.Location = new Point(alien.Location.X,
+                                            alien.Location.Y);
+
+            ball.Location = PingPongData.Instance.BallPosition;
+
+            alienCounterLabel.Text = PingPongData.Instance.ClientScore.ToString();
+            cyborgCounterLabel.Text = PingPongData.Instance.HostScore.ToString();
+        }
+
+        public void NewRound()
         {
             Random random = new Random();
             if (ballSpeedX < 0)
             {
-                ball.Top = random.Next(ClientSize.Height / 3, ClientSize.Height / 2);
-                ball.Left = random.Next(ClientSize.Width / 3, ClientSize.Width / 2);
+                PingPongData.Instance.BallPosition = new Point(
+                    random.Next(ClientSize.Height / 3, ClientSize.Height / 2),
+                    random.Next(ClientSize.Width / 3, ClientSize.Width / 2)
+                    );
             }
             else
             {
-                ball.Top = random.Next(ClientSize.Height / 2, 2 * ClientSize.Height / 3);
-                ball.Left = random.Next(ClientSize.Width / 2, 2 * ClientSize.Width / 3);
+                PingPongData.Instance.BallPosition = new Point(
+                    random.Next(ClientSize.Width / 2, 2 * ClientSize.Width / 3),
+                    random.Next(ClientSize.Height / 2, 2 * ClientSize.Height / 3)
+                    );
+                //ball.Top = random.Next(ClientSize.Height / 2, 2 * ClientSize.Height / 3);
+                //ball.Left = random.Next(ClientSize.Width / 2, 2 * ClientSize.Width / 3);
             }
 
             if (random.Next(0, 2) == 1)
             {
                 ballSpeedY = -ballSpeedY;
             }
+        }
+
+        private void Game_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            menu.Show();
+        }
+
+        private void Game_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
