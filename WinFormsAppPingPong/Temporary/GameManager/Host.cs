@@ -60,7 +60,7 @@ namespace PingPong.GameManager
         {
             try
             {
-                var info = await socket.ReceiveMessageFromAsync(bufferSegment, connectedEndPoint);
+                var info = await socket.ReceiveMessageFromAsync(bufferSegment, new IPEndPoint(IPAddress.Any, 0));
                 connectedEndPoint = info.RemoteEndPoint;
                 PingPongData.Instance.ClientName = Encoding.UTF8.GetString(bufferSegment);
                 await socket.SendToAsync(Encoding.UTF8.GetBytes(PingPongData.Instance.HostName), connectedEndPoint);

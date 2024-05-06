@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using WinFormsAppPingPong.Temporary.AdditionalClasses;
 using WinFormsAppPingPong.Temporary.GameManager;
 using WinFormsAppPingPong.Temporary.GameManager.Database;
+using WinFormsAppPingPong.Temporary.GameManager.Events;
 
 namespace PingPong.GameManager
 {
@@ -48,10 +49,15 @@ namespace PingPong.GameManager
             try
             {
                 connectedEndPoint = new IPEndPoint(address, port);
-                socket.SendTo(Encoding.UTF8.GetBytes("Name1"), connectedEndPoint);
                 byte[] nameBuffer = new byte[1024];
+                socket.SendTo(Encoding.UTF8.GetBytes("Name1"), connectedEndPoint);
                 var res = await socket.ReceiveMessageFromAsync(nameBuffer, connectedEndPoint);
                 PingPongData.Instance.HostName = Encoding.UTF8.GetString(nameBuffer, 0, res.ReceivedBytes);
+
+                PlayerJoinEvent evt = new PlayerJoinEvent(connectedEndPoint);
+
+                PingPongEvents.OnPlayerJoin.Invoke(evt);
+
                 return true;
 
             }

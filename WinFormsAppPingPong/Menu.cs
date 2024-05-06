@@ -84,6 +84,8 @@ namespace WinFormsAppPingPong
             IPAddress ip = host.ownEndPoint.Address;
             int port = host.ownEndPoint.Port;
 
+            host.Setup();
+
             player = host;
 
             // show in panel ip and host
