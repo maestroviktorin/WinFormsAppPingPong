@@ -15,8 +15,8 @@ namespace WinFormsAppPingPong.Temporary.GameManager.Database
 
             Instance = this;
         }
-        public string HostName { get; set; }
-        public string ClientName { get; set;}
+        public string HostName { get; set; } = "p1";
+        public string ClientName { get; set; } = "p2";
 
         public Point HostPosition { get; set; }
         public Point ClientPosition { get;set; }
